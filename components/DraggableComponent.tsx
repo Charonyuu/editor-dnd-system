@@ -1,6 +1,6 @@
 "use client"
 import React, { FC } from 'react';
-
+import Image from 'next/image';
 interface DraggableComponentProps {
     img: string;
     type: string;
@@ -14,7 +14,7 @@ const DraggableComponent: FC<DraggableComponentProps> = ({ img, type, onDragStar
             onDragStart={(e) => onDragStart(e, type)}
             className='m-2 border border-solid border-black'
         >
-            <img src={img} />
+            <Image src={img} alt="Image" />
         </div>
     );
 };

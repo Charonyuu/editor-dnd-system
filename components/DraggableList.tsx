@@ -13,7 +13,7 @@ const DraggableList: FC<DraggableComponentProps> = ({ handleDragStart }) => {
     return (
         <div className='w-[150px] h-screen overflow-auto flex-shrink-0 flex flex-col items-center'>
             {tempImageList.map((data) => (
-                <DraggableComponent img={data.img} type={data.type} onDragStart={handleDragStart} />
+                <DraggableComponent key={data.type} img={data.img} type={data.type} onDragStart={handleDragStart} />
             ))}
 
         </div>
