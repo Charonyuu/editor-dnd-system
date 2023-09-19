@@ -14,7 +14,7 @@ const DraggableComponent: FC<DraggableComponentProps> = ({ img, type, onDragStar
             onDragStart={(e) => onDragStart(e, type)}
             className='m-2 border border-solid border-black'
         >
-            <Image src={img} alt="Image" />
+            <Image src={img} width={132} height={93.5} alt="Image" />
         </div>
     );
 };

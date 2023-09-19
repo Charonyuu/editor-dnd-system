@@ -23,7 +23,7 @@ export const Box1: FC = () => {
     return (
         <div className='w-full'>
             <div className='relative'>
-                <img src={profileInfo.bg} />
+                <img src={profileInfo.bg} className='w-full aspect-[4]' />
                 <img src={profileInfo.photo} className='absolute bottom-0 translate-y-1/2 left-16 w-24 h-24 rounded-full object-cover' />
             </div>
             <div className='mt-16 ml-16 text-white'>
@@ -38,7 +38,7 @@ export const Box2: FC = () => {
     return (
         <div className='w-full'>
             <div className='relative'>
-                <img src={profileInfo.bg} />
+                <img src={profileInfo.bg} className='w-full aspect-[4]' />
                 <img src={profileInfo.photo} className='absolute bottom-0 translate-y-1/2 right-16 w-24 h-24 rounded-full object-cover' />
             </div>
             <div className='mt-2 ml-16 text-white'>
@@ -53,7 +53,7 @@ export const Box3: FC = () => {
     return (
         <div className='w-full'>
             <div className='relative'>
-                <img src={profileInfo.bg} />
+                <img src={profileInfo.bg} className='w-full aspect-[4]' />
                 <img src={profileInfo.photo} className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-24 h-24 rounded-full object-cover' />
             </div>
             <div className='mt-2 ml-16 text-white'>
@@ -68,7 +68,7 @@ export const Box4: FC = () => {
     return (
         <div className='w-full'>
             <div className='relative'>
-                <img src={profileInfo.bg} />
+                <img src={profileInfo.bg} className='w-full aspect-[4]' />
                 <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center'>
                     <img src={profileInfo.photo} className=' w-24 h-24 rounded-full object-cover' />
                     <p className='text-xl font-semibold'>{profileInfo.name}</p>
