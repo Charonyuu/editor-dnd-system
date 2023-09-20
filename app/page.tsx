@@ -12,11 +12,17 @@ const App: FC = () => {
     e.dataTransfer.setData("component_type", CompType);
   };
 
-  const handleDrop = (e: React.DragEvent) => {
+  const handleDrop = (e: React.DragEvent, index?: number) => {
     const CompType = e.dataTransfer.getData("component_type");
     const Component = tempBoxs[CompType as keyof typeof tempBoxs];
 
-    setComponents([...components, Component]);
+    if (index !== undefined) {
+      const newArr = [...components];
+      newArr.splice(index, 0, Component);
+      setComponents(newArr);
+    } else {
+      setComponents([...components, Component]);
+    }
   };
 
   return (

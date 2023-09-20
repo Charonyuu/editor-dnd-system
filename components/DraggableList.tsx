@@ -2,7 +2,7 @@
 
 import DraggableComponent from './DraggableComponent';
 import React, { FC } from 'react';
-import { Box1, Box2, tempImageList } from './templates';
+import { tempImageList } from './templates';
 
 
 interface DraggableComponentProps {
