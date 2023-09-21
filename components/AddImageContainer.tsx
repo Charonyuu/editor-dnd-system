@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 import { useRef } from 'react'
-import { ImageInfoType } from '.'
+import { ImageInfoType } from './type'
 
 type AddImageProps = {
     setImage: Dispatch<SetStateAction<ImageInfoType[]>>

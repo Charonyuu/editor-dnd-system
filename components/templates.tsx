@@ -1,7 +1,10 @@
-import React, { FC, useState } from 'react';
-import { ImageInfoType } from '.';
+import React, { FC, useEffect, useState } from 'react';
+import { ComponentInfoType, ImageInfoType } from './type';
 import AddImageContainer from './AddImageContainer';
 import ImageContainer from './ImageContainer';
+import AddDialogContainer from './AddDialogContainer';
+import clsx from 'clsx';
+import { useDragComponent } from './DragProvider';
 
 const profileInfo = {
     name: "狗狗收容所",
@@ -85,11 +88,30 @@ export const Box4: FC = () => {
         </div>
     )
 }
-export const Word1: FC = () => {
+
+type TypeProps = {
+    id: number
+}
+export const Word1: FC<TypeProps> = ({ id }) => {
+    const [focus, setFocus] = useState("")
+    const [title, setTitle] = useState("標題")
+    const [content, setContent] = useState("內容")
+
+    const { setComponents } = useDragComponent()
+    useEffect(() => {
+        console.log(id)
+        setComponents((prev): ComponentInfoType[] => {
+            const Index = prev.findIndex(ele => ele.id === id)
+            prev[Index].title = title
+            prev[Index].content = content
+
+            return prev
+        })
+    }, [title, content])
     return (
         <div className='w-full px-16 text-white mt-2'>
-            <p className='text-xl'>公司簡介</p>
-            <p contentEditable={true}>{profileInfo.info}</p>
+            <input className={clsx('text-xl bg-transparent w-fit pl-1', focus === "title" ? "border border-white border-solid" : "")} onFocus={() => setFocus("title")} onBlur={() => setFocus("")} value={title} onChange={(e) => setTitle(e.target.value)} />
+            <textarea className={clsx('text-xl bg-transparent w-full h-fit pl-1 ', focus === "content" ? "border border-white border-solid" : "")} onFocus={() => setFocus("content")} onBlur={() => setFocus("")} value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
     )
 }
@@ -104,8 +126,18 @@ export const Word2: FC = () => {
 
 
 
-export const PictureContainer1: FC = () => {
+export const PictureContainer1: FC<TypeProps> = ({ id }) => {
     const [items, setItems] = useState<ImageInfoType[]>([])
+    const { setComponents } = useDragComponent()
+    useEffect(() => {
+        console.log(id)
+        setComponents((prev): ComponentInfoType[] => {
+            const Index = prev.findIndex(ele => ele.id === id)
+            prev[Index].images = items
+
+            return prev
+        })
+    }, [items])
     return (
         <div className='w-full px-16 text-white mt-4'>
             <div className='flex items-center'>
@@ -123,10 +155,23 @@ export const PictureContainer1: FC = () => {
 }
 
 export const PictureContainer2: FC = () => {
+    const [items, setItems] = useState<ImageInfoType[]>([])
+
     return (
-        <div className='w-full px-16 text-white mt-2'>
-            <p className='text-xl text-right mr-3'>公司簡介</p>
-            <p contentEditable={true}>{profileInfo.info}</p>
+        <div className='w-full px-16 text-white mt-4'>
+            <div className='flex items-center'>
+                <img src={profileInfo.photo} className='w-16 h-16 rounded-full object-cover mr-2' />
+                <p>{profileInfo.name}</p>
+            </div>
+            <div className='flex items-center flex-wrap mt-4'>
+                {items.map((item) => (
+                    <ImageContainer item={item} setItems={setItems} />
+                ))}
+                <div>
+                    <AddDialogContainer setImage={setItems} />
+
+                </div>
+            </div>
         </div>
     )
 }
