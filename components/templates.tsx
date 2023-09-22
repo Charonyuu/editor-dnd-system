@@ -94,9 +94,9 @@ export const Box1: FC<TempContainerProps> = ({ id }) => {
     return (
         <div className='w-full'>
             <div className='relative'>
-                <img draggable="false" src={bgURL} className='w-full aspect-[3] object-cover' onClick={() => bgImgRef.current?.click()} />
+                <img draggable="false" src={bgURL} className='w-full aspect-[3] object-cover cursor-pointer' onClick={() => bgImgRef.current?.click()} />
                 <input type="file" hidden ref={bgImgRef} onChange={handleBgImgChange} />
-                <img draggable="false" src={userURL} className='absolute bottom-0 translate-y-1/2 left-16 w-24 h-24 rounded-full object-cover' onClick={() => userImgRef.current?.click()} />
+                <img draggable="false" src={userURL} className='absolute bottom-0 translate-y-1/2 left-16 w-24 h-24 rounded-full object-cover cursor-pointer' onClick={() => userImgRef.current?.click()} />
                 <input type="file" hidden ref={userImgRef} onChange={handleUserImgChange} />
             </div>
             <div className='mt-16 px-16 text-white'>

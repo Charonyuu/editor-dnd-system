@@ -15,7 +15,7 @@ export default function AddImageContainer({ setImage }: AddImageProps) {
         const files = e.target.files;
         if (files) {
             const file = files[0] // Convert FileList to File[]
-            setImage(prev => [...prev, { id: Date.now().toString(), file }]); // Now setImage expects File[] which is what we are giving
+            setImage(prev => [...prev, file]); // Now setImage expects File[] which is what we are giving
         }
     };
     return (

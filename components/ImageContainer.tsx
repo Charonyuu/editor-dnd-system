@@ -20,13 +20,15 @@ export default function ImageContainer({ item, setItems }: AddImageProps) {
             setItems(prev => {
                 const temp = [...prev]
                 const index = temp.findIndex((ele) => ele === item)
+                console.log(index)
                 temp[index] = file
                 return temp
             }); // Now setImage expects File[] which is what we are giving
         }
     };
+    console.log(item)
 
-    const image = item && typeof item !== "string" ? URL.createObjectURL(item) : item
+    const image = typeof item !== "string" ? URL.createObjectURL(item) : item
     return (
         <div className='w-[200px] h-[200px] bg-gray-500 rounded-lg relative overflow-hidden cursor-pointer my-2 mr-2' onClick={() => inputRef.current?.click()}>
             <img src={image} className='w-full h-full object-cover' draggable="false" />
