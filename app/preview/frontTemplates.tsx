@@ -84,7 +84,7 @@ export const PictureContainer2: FC = () => {
         <div className='w-full px-16 text-white my-4'>
             <div className='flex items-center flex-wrap mt-4'>
                 {items.map((item) => (
-                    <ImageContainer item={item} setItems={setItems} />
+                    <ImageContainer key={item.id} item={item} setItems={setItems} />
                 ))}
                 <div>
                     <AddDialogContainer setImage={setItems} />

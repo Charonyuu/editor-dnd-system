@@ -23,7 +23,7 @@ type ComponentInfoType = {
 
 const Preview: FC = () => {
     const router = useRouter()
-    const Json = localStorage.getItem("preview")
+    const Json = typeof window !== "undefined" && localStorage.getItem("preview")
     const JsonParse = Json && JSON.parse(Json)
     console.log(JsonParse)
 
