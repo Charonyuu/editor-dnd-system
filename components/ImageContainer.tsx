@@ -28,8 +28,8 @@ export default function ImageContainer({ item, setItems }: AddImageProps) {
 
     const image = URL.createObjectURL(item.file)
     return (
-        <div className='w-[200px] h-[200px] bg-gray-500 rounded-lg relative overflow-hidden cursor-pointer mx-2' onClick={() => inputRef.current?.click()}>
-            <img src={image} className='w-full h-full object-cover' />
+        <div className='w-[200px] h-[200px] bg-gray-500 rounded-lg relative overflow-hidden cursor-pointer my-2 mr-2' onClick={() => inputRef.current?.click()}>
+            <img src={image} className='w-full h-full object-cover' draggable="false" />
             <input type="file" hidden ref={inputRef} onChange={handleChange} />
         </div>
     )

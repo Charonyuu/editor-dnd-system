@@ -1,3 +1,5 @@
+"use client"
+
 import React, { createContext, useState, useContext, FC } from 'react';
 import { ComponentInfoType } from './type';
 

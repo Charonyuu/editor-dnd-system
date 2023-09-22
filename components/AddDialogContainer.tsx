@@ -9,7 +9,7 @@ type AddImageProps = {
 
 export default function AddDialogContainer({ setImage }: AddImageProps) {
     const inputRef = useRef<HTMLInputElement>(null)
-
+    // const [image,setImage] = useState()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;

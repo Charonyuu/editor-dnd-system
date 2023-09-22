@@ -46,16 +46,16 @@ export default function CompTool({ id }: CompToolProps) {
     }
 
     return (
-        <div className='absolute top-2 right-2 flex items-center z-10'>
+        <div className="bg-gray-400 w-full h-8 flex justify-end items-center">
             {Index > 0 ?
-                <div className='bg-gray-400 flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortUp(e)}>
+                <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortUp(e)}>
                     <AiOutlineArrowUp color='white' />
                 </div> : null}
             {Index < components.length - 1 ?
-                <div className='bg-gray-400 flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortDown(e)}>
+                <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortDown(e)}>
                     <AiOutlineArrowDown color='white' />
                 </div> : null}
-            <div className='bg-gray-400 flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleDelete(e)}>
+            <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleDelete(e)}>
                 <AiOutlineClose color='white' />
             </div>
         </div>

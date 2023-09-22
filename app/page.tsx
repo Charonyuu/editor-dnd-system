@@ -4,18 +4,8 @@ import React, { FC } from 'react';
 import DroppableArea from "../components/DroppableArea";
 import DraggableList from '@/components/DraggableList';
 import { tempBoxs } from '@/components/templates';
-import DragComponentProvider, { useDragComponent } from '@/components/DragProvider';
+import { useDragComponent } from '@/components/DragProvider';
 
-
-
-
-const Main: FC = () => {
-  return (
-    <DragComponentProvider>
-      <App />
-    </DragComponentProvider>
-  );
-}
 
 const App: FC = () => {
   const { components, setComponents } = useDragComponent()
@@ -39,4 +29,4 @@ const App: FC = () => {
   );
 }
 
-export default Main;
+export default App;
