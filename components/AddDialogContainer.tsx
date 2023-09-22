@@ -9,13 +9,12 @@ type AddImageProps = {
 
 export default function AddDialogContainer({ setImage }: AddImageProps) {
     const inputRef = useRef<HTMLInputElement>(null)
-    // const [image,setImage] = useState()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (files) {
             const file = files[0] // Convert FileList to File[]
-            setImage(prev => [...prev, { id: Date.now().toString(), file }]); // Now setImage expects File[] which is what we are giving
+            setImage(prev => [...prev, file]); // Now setImage expects File[] which is what we are giving
         }
     };
     return (

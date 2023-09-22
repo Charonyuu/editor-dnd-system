@@ -4,10 +4,8 @@ export type TempContainerProps = {
 }
 
 // image[]的type
-export type ImageInfoType = {
-  id: string;
-  file: File;
-};
+export type ImageInfoType = File | string;
+
 
 
 // 文章的props
@@ -17,6 +15,19 @@ export type form = {
   image?: File;
   url?: string;
 };
+
+// 存在後端的東西
+export type StorageComponentsType = {
+  id: number;
+  type: string;
+  title?: string;
+  content?: string;
+  images?: string[];
+  url?: string;
+  forms?: form[];
+  image?: string;
+  bg?: string;
+}
 
 // 編輯模式components[]的type
 export type ComponentInfoType = {

@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import React, { FC, useState } from "react";
 import CompTool from "./CompTool";
-import { ComponentInfoType } from "./type";
+import { ComponentInfoType, ImageInfoType } from "./type";
 
 interface DroppableAreaProps {
     clear: () => void;
@@ -19,25 +19,49 @@ const DroppableArea: FC<DroppableAreaProps> = ({
         e.preventDefault();
     };
 
-    const handleSave = () => {
-        const saveJson = components.map((ele) => {
-            const { component, ...otherEle } = ele
-            let images
-            let image
-            let bg
-            if (otherEle.images) {
-                images = otherEle.images.map((item) => {
-                    return URL.createObjectURL(item?.file)
-                })
-            }
-            if (otherEle.image) {
-                image = URL.createObjectURL(otherEle.image)
-            }
-            if (otherEle.bg) {
-                bg = URL.createObjectURL(otherEle.bg)
-            }
-            return { ...otherEle, images, image, bg }
-        })
+    const handleSave = async () => {
+        const saveJson = await Promise.all(
+            components.map(async (ele) => {
+                let { component, ...otherEle } = ele
+                let images
+                let image
+                let bg
+                if (otherEle.images) {
+                    images = await Promise.all(
+                        otherEle.images.map(async (item) => {
+                            // 如果是字符串，直接返回
+                            if (typeof item === "string") return item;
+
+                            // 如果是File（或Blob），读取为DataURL
+                            return new Promise((resolve) => {
+                                const reader = new FileReader();
+                                reader.onload = () => resolve(reader.result);
+                                reader.readAsDataURL(item as File);
+                            });
+                        })
+                    );
+                }
+                if (otherEle.image) {
+                    image = await new Promise((resolve) => {
+                        if (typeof otherEle.image === "string") return resolve(otherEle.image);
+
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.readAsDataURL(otherEle.image as File); // 使用 as File 进行类型断言
+                    });
+                }
+                if (otherEle.bg) {
+                    bg = await new Promise((resolve) => {
+                        if (typeof otherEle.bg === "string") return resolve(otherEle.bg);
+
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.readAsDataURL(otherEle.bg as File); // 使用 as File 进行类型断言
+                    });
+                }
+                return { ...otherEle, images, image, bg }
+            })
+        );
         localStorage.setItem("preview", JSON.stringify(saveJson))
         console.log(saveJson)
     }
@@ -59,7 +83,6 @@ const DroppableArea: FC<DroppableAreaProps> = ({
                     key={Comp.id}
                 >
                     <CompTool id={Comp.id} />
-                    {/* {focus === Comp.id ? <CompTool id={Comp.id} /> : null} */}
                     <Comp.component id={Comp.id} />
                 </div>
             ))}

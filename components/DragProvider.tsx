@@ -1,7 +1,9 @@
 "use client"
 
 import React, { createContext, useState, useContext, FC } from 'react';
-import { ComponentInfoType } from './type';
+import { useEffect } from 'react';
+import { tempBoxs } from './templates';
+import { ComponentInfoType, StorageComponentsType } from './type';
 
 
 type DragContextType = {
@@ -25,7 +27,15 @@ type ProviderProps = {
 
 export default function DragComponentProvider({ children }: ProviderProps) {
     const [components, setComponents] = useState<ComponentInfoType[]>([]);
-
+    useEffect(() => {
+        const Json = typeof window !== "undefined" && localStorage.getItem("preview")
+        if (!Json || JSON.parse(Json).length === 0) return
+        const JsonParse = JSON.parse(Json)
+        const SaveResult = JsonParse.map((ele: StorageComponentsType) => {
+            return { ...ele, component: tempBoxs[ele.type as keyof typeof tempBoxs] }
+        })
+        setComponents(SaveResult)
+    }, [])
     return (
         <DragContext.Provider value={{ components, setComponents }}>
             {children}

@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { ImageInfoType } from './type'
 
 type AddImageProps = {
-    item: ImageInfoType
+    item: File | string
     setItems: React.Dispatch<SetStateAction<ImageInfoType[]>>
 }
 
@@ -19,14 +19,14 @@ export default function ImageContainer({ item, setItems }: AddImageProps) {
 
             setItems(prev => {
                 const temp = [...prev]
-                const index = temp.findIndex((ele) => ele.id === item.id)
-                temp[index] = { ...temp[index], file }
+                const index = temp.findIndex((ele) => ele === item)
+                temp[index] = file
                 return temp
             }); // Now setImage expects File[] which is what we are giving
         }
     };
 
-    const image = URL.createObjectURL(item.file)
+    const image = item && typeof item !== "string" ? URL.createObjectURL(item) : item
     return (
         <div className='w-[200px] h-[200px] bg-gray-500 rounded-lg relative overflow-hidden cursor-pointer my-2 mr-2' onClick={() => inputRef.current?.click()}>
             <img src={image} className='w-full h-full object-cover' draggable="false" />

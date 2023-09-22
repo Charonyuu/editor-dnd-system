@@ -172,7 +172,7 @@ export const Word1: FC<TempContainerProps> = ({ id }) => {
     }, [title, content])
     const resizeTextarea = () => {
         if (textareaRef.current) {
-            textareaRef.current.style.height = "fit-content"; // 將高度重置為auto以獲取正確的scrollHeight
+            textareaRef.current.style.height = "auto"; // 將高度重置為auto以獲取正確的scrollHeight
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // 將高度設置為scrollHeight以適應文本
         }
     };
@@ -210,8 +210,8 @@ export const PictureContainer1: FC<TempContainerProps> = ({ id }) => {
     }, [items])
     return (
         <div className='w-full px-16 text-white flex items-center flex-wrap my-4'>
-            {items.map((item) => (
-                <ImageContainer key={item.id} item={item} setItems={setItems} />
+            {items.map((item, idx) => (
+                <ImageContainer key={idx} item={item} setItems={setItems} />
             ))}
             <AddImageContainer setImage={setItems} />
         </div>
@@ -224,8 +224,8 @@ export const PictureContainer2: FC = () => {
     return (
         <div className='w-full px-16 text-white my-4'>
             <div className='flex items-center flex-wrap mt-4'>
-                {items.map((item) => (
-                    <ImageContainer key={item.id} item={item} setItems={setItems} />
+                {items.map((item, idx) => (
+                    <ImageContainer key={idx} item={item} setItems={setItems} />
                 ))}
                 <div>
                     <AddDialogContainer setImage={setItems} />
