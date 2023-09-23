@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { useRef } from 'react'
 import { ImageInfoType } from './type'
+import { BiImageAdd } from "react-icons/bi"
 
 type AddImageProps = {
     setImage: Dispatch<SetStateAction<ImageInfoType[]>>
@@ -20,7 +21,7 @@ export default function AddDialogContainer({ setImage }: AddImageProps) {
     return (
         <div className='bg-gray-400 w-[250px] rounded-xl flex flex-col items-center py-2 px-[25px]'>
             <div className='w-[200px] h-[200px] bg-gray-500 rounded-lg relative'>
-                <img src='/icon/addImage.svg' className='w-12 h-8 object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer' onClick={() => inputRef.current?.click()} />
+                <BiImageAdd className='w-12 h-8 object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer' onClick={() => inputRef.current?.click()} />
                 <input type="file" hidden ref={inputRef} onChange={handleChange} />
             </div>
             <input placeholder='輸入標題' className='w-[200px] my-1 bg-transparent border-b border-solid border-white placeholder-white pl-1' />

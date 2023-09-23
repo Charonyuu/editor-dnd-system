@@ -7,16 +7,22 @@ import { FrontTempBoxs } from './frontTemplates';
 
 
 const Preview: FC = () => {
-    const router = useRouter()
-    const Json = typeof window !== "undefined" && localStorage.getItem("preview")
-    const JsonParse = Json && JSON.parse(Json)
+    const router = useRouter();
+    const [jsonParse, setJsonParse] = React.useState<StorageComponentsType[]>([]);
 
-    if (!Json) return <p>沒有暫儲的東西</p>
+    React.useEffect(() => {
+        const json = localStorage.getItem("preview");
+        if (json) {
+            setJsonParse(JSON.parse(json));
+        }
+    }, []);
+
+    if (jsonParse.length === 0) return <p>沒有暫儲的東西</p>;
     return (
         <div className="w-full h-screen bg-black relative overflow-auto p-5">
             <button className='text-white mb-2' onClick={() => router.back()}>{"<"}Back Page</button>
 
-            {JsonParse.map((data: StorageComponentsType) => {
+            {jsonParse.map((data: StorageComponentsType) => {
 
                 const Component = FrontTempBoxs[data.type as keyof typeof FrontTempBoxs]
                 return (
@@ -24,7 +30,6 @@ const Preview: FC = () => {
                         className="relative my-2"
                         key={data.id}
                     >
-                        {/* {focus === Comp.id ? <CompTool id={Comp.id} /> : null} */}
                         <Component data={data} />
                     </div>
                 )

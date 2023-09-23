@@ -13,7 +13,7 @@ type DragContextType = {
 
 const DragContext = createContext<DragContextType | null>(null);
 
-export const useDragComponent = () => {
+export const useDragContext = () => {
     const context = useContext(DragContext);
     if (!context) {
         throw new Error('useDrag must be used within a DragProvider');

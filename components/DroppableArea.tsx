@@ -1,12 +1,12 @@
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import CompTool from "./CompTool";
-import { useDragComponent } from "./DragProvider";
+import { useDragContext } from "./DragProvider";
 import { tempBoxs } from "./templates";
 
 const DroppableArea: FC = () => {
     const router = useRouter()
-    const { components, setComponents } = useDragComponent()
+    const { components, setComponents } = useDragContext()
     const preventDefault = (e: React.DragEvent) => {
         e.preventDefault();
     };

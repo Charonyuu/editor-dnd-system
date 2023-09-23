@@ -6,8 +6,6 @@ export type TempContainerProps = {
 // image[]的type
 export type ImageInfoType = File | string;
 
-
-
 // 文章的props
 export type form = {
   title?: string;
@@ -23,7 +21,7 @@ export type StorageComponentsType = {
   title?: string;
   content?: string;
   images?: string[];
-  url?: string;
+  url?: string[];
   forms?: form[];
   image?: string;
   bg?: string;
@@ -37,7 +35,7 @@ export type ComponentInfoType = {
   title?: string;
   content?: string;
   images?: ImageInfoType[];
-  url?: string;
+  url?: string[];
   forms?: form[];
   image?: File;
   bg?: File;
