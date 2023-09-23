@@ -1,23 +1,25 @@
 import { useRouter } from "next/navigation";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import CompTool from "./CompTool";
-import { ComponentInfoType, ImageInfoType } from "./type";
+import { useDragComponent } from "./DragProvider";
+import { tempBoxs } from "./templates";
 
-interface DroppableAreaProps {
-    clear: () => void;
-    onDrop: (e: React.DragEvent) => void;
-    components: ComponentInfoType[];
-}
-
-const DroppableArea: FC<DroppableAreaProps> = ({
-    clear,
-    onDrop,
-    components,
-}) => {
+const DroppableArea: FC = () => {
     const router = useRouter()
+    const { components, setComponents } = useDragComponent()
     const preventDefault = (e: React.DragEvent) => {
         e.preventDefault();
     };
+    const handleOnDrop = (e: React.DragEvent) => {
+        const CompType = e.dataTransfer.getData("component_type");
+        const Component = { component: tempBoxs[CompType as keyof typeof tempBoxs], id: Date.now(), type: CompType };
+
+        setComponents([...components, Component]);
+    };
+
+    const handleClear = () => {
+        setComponents([])
+    }
 
     const handleSave = async () => {
         const saveJson = await Promise.all(
@@ -73,7 +75,7 @@ const DroppableArea: FC<DroppableAreaProps> = ({
 
     return (
         <div
-            onDrop={onDrop}
+            onDrop={handleOnDrop}
             onDragOver={preventDefault}
             className="w-full h-screen bg-black relative overflow-auto p-5"
         >
@@ -89,7 +91,7 @@ const DroppableArea: FC<DroppableAreaProps> = ({
             <div className="fixed bottom-4 left-1/2 -translate-x-1/2 text-white bg-red-600 px-4 rounded-lg font-semibold flex items-center">
                 <div
                     className="cursor-pointer border-r border-solid border-white pr-2"
-                    onClick={clear}
+                    onClick={handleClear}
                 >
                     清除
                 </div>
