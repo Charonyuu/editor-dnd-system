@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import CompTool from "./CompTool";
-import { useDragContext } from "./DragProvider";
+import { useDragContext } from "./Provider/DragProvider";
 import { tempBoxs } from "./templates";
 
 const DroppableArea: FC = () => {

@@ -2,8 +2,8 @@
 
 import React, { createContext, useState, useContext, FC } from 'react';
 import { useEffect } from 'react';
-import { tempBoxs } from './templates';
-import { ComponentInfoType, StorageComponentsType } from './type';
+import { tempBoxs } from '../templates';
+import { ComponentInfoType, StorageComponentsType } from '../type';
 
 
 type DragContextType = {

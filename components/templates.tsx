@@ -4,7 +4,7 @@ import AddImageContainer from './AddImageContainer';
 import ImageContainer from './ImageContainer';
 import AddDialogContainer from './AddDialogContainer';
 import clsx from 'clsx';
-import { useDragContext } from './DragProvider';
+import { useDragContext } from './Provider/DragProvider';
 import { useRef } from 'react';
 
 export const tempImageList = [

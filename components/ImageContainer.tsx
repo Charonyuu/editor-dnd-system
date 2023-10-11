@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useDragContext } from './DragProvider'
+import { useDragContext } from './Provider/DragProvider'
 import { useEffect } from 'react'
 import { DialogClose } from '@radix-ui/react-dialog'
 

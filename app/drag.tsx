@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import DroppableArea from "../components/DroppableArea";
 import DraggableList from '@/components/DraggableList';
 import { tempBoxs } from '@/components/templates';
-import DragComponentProvider, { useDragComponent } from '@/components/DragProvider';
+import DragComponentProvider, { useDragContext } from '@/components/Provider/DragProvider';
 
 
 
@@ -18,7 +18,7 @@ const Main: FC = () => {
 }
 
 const App: FC = () => {
-  const { components, setComponents } = useDragComponent()
+  const { components, setComponents } = useDragContext()
 
   const handleDragStart = (e: React.DragEvent, CompType: string) => {
     e.dataTransfer.setData("component_type", CompType);
