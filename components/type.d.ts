@@ -1,8 +1,12 @@
-export type ImageInfoType = {
-  id: string;
-  file: File;
-};
+// 模板的Props
+export type TempContainerProps = {
+  id: number
+}
 
+// image[]的type
+export type ImageInfoType = File | string;
+
+// 文章的props
 export type form = {
   title?: string;
   content?: string;
@@ -10,6 +14,20 @@ export type form = {
   url?: string;
 };
 
+// 存在後端的東西
+export type StorageComponentsType = {
+  id: number;
+  type: string;
+  title?: string;
+  content?: string;
+  images?: string[];
+  url?: string[];
+  forms?: form[];
+  image?: string;
+  bg?: string;
+}
+
+// 編輯模式components[]的type
 export type ComponentInfoType = {
   component: FC;
   id: number;
@@ -17,6 +35,8 @@ export type ComponentInfoType = {
   title?: string;
   content?: string;
   images?: ImageInfoType[];
-  url?: string;
+  url?: string[];
   forms?: form[];
+  image?: File;
+  bg?: File;
 };

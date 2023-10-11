@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineClose } from "react-icons/ai"
-import { useDragComponent } from './DragProvider'
+import { useDragContext } from './DragProvider'
 import { ComponentInfoType } from './type'
 
 type CompToolProps = {
@@ -8,7 +8,7 @@ type CompToolProps = {
 }
 
 export default function CompTool({ id }: CompToolProps) {
-    const { components, setComponents } = useDragComponent()
+    const { components, setComponents } = useDragContext()
 
     const Index = components.findIndex((item) => item.id === id)
 
@@ -46,17 +46,17 @@ export default function CompTool({ id }: CompToolProps) {
     }
 
     return (
-        <div className='absolute top-2 right-2 flex items-center z-10'>
+        <div className="bg-gray-400 w-full h-8 flex justify-end items-center">
             {Index > 0 ?
-                <div className='bg-gray-400 flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortUp(e)}>
-                    <AiOutlineArrowUp color='white' />
+                <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortUp(e)}>
+                    <AiOutlineArrowUp color='white' fontSize="14px" />
                 </div> : null}
             {Index < components.length - 1 ?
-                <div className='bg-gray-400 flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortDown(e)}>
-                    <AiOutlineArrowDown color='white' />
+                <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortDown(e)}>
+                    <AiOutlineArrowDown color='white' fontSize="14px" />
                 </div> : null}
-            <div className='bg-gray-400 flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleDelete(e)}>
-                <AiOutlineClose color='white' />
+            <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleDelete(e)}>
+                <AiOutlineClose color='white' fontSize="14px" />
             </div>
         </div>
     )
