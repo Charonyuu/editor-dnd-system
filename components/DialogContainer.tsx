@@ -1,6 +1,7 @@
 import React, { SetStateAction } from 'react'
 import { useRef } from 'react'
 import { ImageInfoType } from './type'
+import { APIURL } from '@/constant'
 
 type AddImageProps = {
     item: ImageInfoType
@@ -26,7 +27,7 @@ export default function ImageContainer({ item, setItems }: AddImageProps) {
         }
     };
 
-    const image = typeof item !== "string" ? URL.createObjectURL(item) : item
+    const image = typeof item !== "string" ? URL.createObjectURL(item) : APIURL +item
 
     return (
         <div className='w-[200px] h-[200px] bg-gray-500 rounded-lg relative overflow-hidden cursor-pointer mx-2' onClick={() => inputRef.current?.click()}>

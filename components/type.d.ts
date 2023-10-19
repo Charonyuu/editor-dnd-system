@@ -1,7 +1,7 @@
 // 模板的Props
 export type TempContainerProps = {
-  id: number
-}
+  id: number;
+};
 
 // image[]的type
 export type ImageInfoType = File | string;
@@ -25,7 +25,7 @@ export type StorageComponentsType = {
   forms?: form[];
   image?: string;
   bg?: string;
-}
+};
 
 // 編輯模式components[]的type
 export type ComponentInfoType = {
@@ -37,6 +37,6 @@ export type ComponentInfoType = {
   images?: ImageInfoType[];
   url?: string[];
   forms?: form[];
-  image?: File;
-  bg?: File;
+  image?: File | string;
+  bg?: File | string;
 };

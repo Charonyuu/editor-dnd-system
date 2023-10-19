@@ -16,7 +16,6 @@ function ModeSwitch() {
             setIsChecked(true)
         }
     }
-    console.log(theme, isChecked)
     return (
         <div className="relative">
             <input

@@ -1,63 +1,83 @@
-import React from 'react'
-import { AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineClose } from "react-icons/ai"
-import { useDragContext } from './Provider/DragProvider'
-import { ComponentInfoType } from './type'
+import React from "react";
+import {
+  AiOutlineArrowDown,
+  AiOutlineArrowUp,
+  AiOutlineClose,
+} from "react-icons/ai";
+import { useDragContext } from "../app/drag/DragProvider";
+import { ComponentInfoType } from "./type";
 
 type CompToolProps = {
-    id: number
-}
+  id: number;
+};
 
 export default function CompTool({ id }: CompToolProps) {
-    const { components, setComponents } = useDragContext()
+  const { components, setComponents } = useDragContext();
 
-    const Index = components.findIndex((item) => item.id === id)
+  const Index = components.findIndex((item) => item.id === id);
 
-    function handleSortUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        e.stopPropagation();
-        setComponents((prev: ComponentInfoType[]) => {
-            const newIndex = Index - 1;
-            if (newIndex < 0) return prev; // 索引小於0，不作任何變動
+  function handleSortUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    e.stopPropagation();
+    setComponents((prev: ComponentInfoType[]) => {
+      const newIndex = Index - 1;
+      if (newIndex < 0) return prev; // 索引小於0，不作任何變動
 
-            const newComponents = [...prev];
-            [newComponents[Index], newComponents[newIndex]] = [newComponents[newIndex], newComponents[Index]];
-            return newComponents;
-        });
-    }
+      const newComponents = [...prev];
+      [newComponents[Index], newComponents[newIndex]] = [
+        newComponents[newIndex],
+        newComponents[Index],
+      ];
+      return newComponents;
+    });
+  }
 
-    function handleSortDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        e.stopPropagation();
-        setComponents((prev: ComponentInfoType[]) => {
-            const newIndex = Index + 1;
-            if (newIndex >= prev.length) return prev; // 索引大於等於components的長度，不作任何變動
+  function handleSortDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    e.stopPropagation();
+    setComponents((prev: ComponentInfoType[]) => {
+      const newIndex = Index + 1;
+      if (newIndex >= prev.length) return prev; // 索引大於等於components的長度，不作任何變動
 
-            const newComponents = [...prev];
-            [newComponents[Index], newComponents[newIndex]] = [newComponents[newIndex], newComponents[Index]];
-            return newComponents;
-        });
-    }
+      const newComponents = [...prev];
+      [newComponents[Index], newComponents[newIndex]] = [
+        newComponents[newIndex],
+        newComponents[Index],
+      ];
+      return newComponents;
+    });
+  }
 
+  function handleDelete(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    e.stopPropagation();
+    setComponents((prev: ComponentInfoType[]) => {
+      const temp = prev.filter((item) => item.id !== id);
+      return temp;
+    });
+  }
 
-    function handleDelete(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        e.stopPropagation()
-        setComponents((prev: ComponentInfoType[]) => {
-            const temp = prev.filter((item) => item.id !== id)
-            return temp
-        })
-    }
-
-    return (
-        <div className="bg-gray-400 w-full h-8 flex justify-end items-center">
-            {Index > 0 ?
-                <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortUp(e)}>
-                    <AiOutlineArrowUp color='white' fontSize="14px" />
-                </div> : null}
-            {Index < components.length - 1 ?
-                <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleSortDown(e)}>
-                    <AiOutlineArrowDown color='white' fontSize="14px" />
-                </div> : null}
-            <div className='flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer' onClick={(e) => handleDelete(e)}>
-                <AiOutlineClose color='white' fontSize="14px" />
-            </div>
+  return (
+    <div className="bg-gray-400 w-full h-8 flex justify-end items-center">
+      {Index > 0 ? (
+        <div
+          className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
+          onClick={(e) => handleSortUp(e)}
+        >
+          <AiOutlineArrowUp color="white" fontSize="14px" />
         </div>
-    )
+      ) : null}
+      {Index < components.length - 1 ? (
+        <div
+          className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
+          onClick={(e) => handleSortDown(e)}
+        >
+          <AiOutlineArrowDown color="white" fontSize="14px" />
+        </div>
+      ) : null}
+      <div
+        className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
+        onClick={(e) => handleDelete(e)}
+      >
+        <AiOutlineClose color="white" fontSize="14px" />
+      </div>
+    </div>
+  );
 }

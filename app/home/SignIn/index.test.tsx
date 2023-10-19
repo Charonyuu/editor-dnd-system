@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import Login from "./page";
+import SignIn from "./page";
 import axios from "axios";
 
 
@@ -10,7 +10,7 @@ jest.mock('axios', () => ({
 
 describe("Login Component", () => {
   it("should call login function with the correct arguments when Sign In button is clicked", () => {
-    render(<Login />);
+    render(<SignIn />);
 
     // Find the input fields and button
     const accountInput = screen.getByPlaceholderText("Account");
