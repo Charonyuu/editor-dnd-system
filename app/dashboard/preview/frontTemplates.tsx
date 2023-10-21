@@ -1,6 +1,6 @@
 "use client"
 import React, { FC, useState } from 'react';
-import { StorageComponentsType } from '../../components/type';
+import { StorageComponentsType } from '../../../components/type';
 
 type ComponentInfoType = {
     data: StorageComponentsType

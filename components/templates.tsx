@@ -4,8 +4,9 @@ import AddImageContainer from "./AddImageContainer";
 import ImageContainer from "./ImageContainer";
 import AddDialogContainer from "./AddDialogContainer";
 import clsx from "clsx";
-import { useDragContext } from "../app/drag/DragProvider";
+import { useDragContext } from "../app/dashboard/drag/DragProvider";
 import { useRef } from "react";
+import { APIURL } from "@/constant";
 
 export const tempImageList = [
   { img: "/tempImages/type1.jpg", type: "type1", name: "簡介區塊" },
@@ -93,14 +94,14 @@ export const Box1: FC<TempContainerProps> = ({ id }) => {
       <div className="relative">
         <img
           draggable="false"
-          src={bgURL}
+          src={APIURL + bgURL}
           className="w-full max-h-[200px] aspect-[3] object-cover cursor-pointer"
           onClick={() => bgImgRef.current?.click()}
         />
         <input type="file" hidden ref={bgImgRef} onChange={handleBgImgChange} />
         <img
           draggable="false"
-          src={userURL}
+          src={APIURL + userURL}
           className="absolute bottom-0 translate-y-1/2 left-16 w-[100px] h-[100px] rounded-full object-cover cursor-pointer"
           onClick={() => userImgRef.current?.click()}
         />

@@ -24,7 +24,7 @@ export default function useSignIn() {
         }
       );
       if (res.status === 200) {
-        router.push("/drag");
+        router.push("/dashboard/drag");
       }
     } catch (err) {
       setError(String(err));

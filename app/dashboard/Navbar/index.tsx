@@ -1,16 +1,14 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import ModeSwitch from "./darkmodeSwitch";
-import I18nDropDown from "./i18nDropDown";
-import { Button } from "../../../components/ui/button";
-import { BiLogInCircle } from "react-icons/bi";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { BiLogInCircle } from "react-icons/bi";
 
-export default function HomeNavbar() {
-  const router = useRouter();
+export default function DashboardNavbar() {
   const { theme } = useTheme();
+  const router = useRouter();
   return (
     <div className="fixed top-0 w-screen flex justify-between items-center px-4 py-1 border-b border-black border-solid">
       <div className="flex items-center">
@@ -23,26 +21,18 @@ export default function HomeNavbar() {
           />
           <p className="font-semibold mr-4 font-Pixelify">Web Draggie</p>
         </a>
-        <a href="getStarted" className="mx-4">
-          Get Started
+        <a href="drag" className="mx-4">
+          編輯
         </a>
-        <a href="pricing" className="mx-4">
-          Pricing
-        </a>
-        <a href="example" className="mx-4">
-          Examples
-        </a>
-        <a href="contact" className="mx-4">
-          Contact Me
+        <a href="analyze" className="mx-4">
+          分析
         </a>
       </div>
       <div className="flex items-center">
         {/* <div className='mx-4'>switch</div> */}
-        <ModeSwitch />
-        <I18nDropDown />
         <Button onClick={() => router.push("SignIn")} variant="outline">
           <BiLogInCircle fontSize="20px" />
-          <p className="ml-2">login</p>
+          <p className="ml-2">logout</p>
         </Button>
       </div>
     </div>

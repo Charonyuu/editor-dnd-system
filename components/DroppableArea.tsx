@@ -3,14 +3,16 @@
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import CompTool from "./CompTool";
-import { useDragContext } from "../app/drag/DragProvider";
+import { useDragContext } from "../app/dashboard/drag/DragProvider";
 import { tempBoxs } from "./templates";
 import { uploadFile } from "@/lib/uploadFile";
 import axios from "axios";
 import { APIURL } from "@/constant";
+import { useToast } from "./ui/use-toast";
 
 const DroppableArea: FC = () => {
   const router = useRouter();
+  const { toast } = useToast();
   const { components, setComponents } = useDragContext();
   const preventDefault = (e: React.DragEvent) => {
     e.preventDefault();
@@ -76,6 +78,10 @@ const DroppableArea: FC = () => {
           withCredentials: true, // 啟用credentials（包括cookies）
         }
       );
+      toast({
+        title: "儲存完成",
+        description: "可以在自己頁面觀看喔",
+      });
       console.log(saveJson);
     } catch (error) {
       console.error("发生错误：", error);

@@ -2,11 +2,11 @@
 
 import React, { createContext, useState, useContext, FC } from "react";
 import { useEffect } from "react";
-import { tempBoxs } from "../../../components/templates";
+import { tempBoxs } from "../../../../components/templates";
 import {
   ComponentInfoType,
   StorageComponentsType,
-} from "../../../components/type";
+} from "../../../../components/type";
 import useGetDrag from "./useGetDrag";
 
 type DragContextType = {

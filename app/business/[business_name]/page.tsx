@@ -1,7 +1,6 @@
 "use client";
 
-import { ComponentInfoType, StorageComponentsType } from "@/components/type";
-import { usePathname, useRouter } from "next/navigation";
+import { StorageComponentsType } from "@/components/type";
 import React, { FC } from "react";
 import { FrontTempBoxs } from "./frontTemplates";
 import useGetDragsByName from "./useGetDragsByName";

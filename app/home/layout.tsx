@@ -1,6 +1,6 @@
-import Navbar from "@/app/home/Navbar";
+import HomeNavbar from "@/app/home/Navbar";
 
-export default function DashboardLayout({
+export default function HomeLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
@@ -8,9 +8,9 @@ export default function DashboardLayout({
   return (
     <section>
       {/* Include shared UI here e.g. a header or sidebar */}
-      <Navbar />
+      <HomeNavbar />
 
-      {children}
+      <div className="min-h-screen min-w-screen pt-[50px] flex flex-col">{children}</div>
     </section>
   );
 }

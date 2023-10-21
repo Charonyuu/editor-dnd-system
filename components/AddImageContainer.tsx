@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useRef } from "react";
 import { ImageInfoType } from "./type";
 import { BiImageAdd } from "react-icons/bi";
-import { useDragContext } from "../app/drag/DragProvider";
+import { useDragContext } from "../app/dashboard/drag/DragProvider";
 
 type AddImageProps = {
   id: number;

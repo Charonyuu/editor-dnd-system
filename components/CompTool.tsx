@@ -4,7 +4,7 @@ import {
   AiOutlineArrowUp,
   AiOutlineClose,
 } from "react-icons/ai";
-import { useDragContext } from "../app/drag/DragProvider";
+import { useDragContext } from "../app/dashboard/drag/DragProvider";
 import { ComponentInfoType } from "./type";
 
 type CompToolProps = {
