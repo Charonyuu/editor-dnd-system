@@ -1,9 +1,9 @@
 "use client";
 
-import { StorageComponentsType } from "@/components/type";
 import React, { FC } from "react";
 import { FrontTempBoxs } from "./frontTemplates";
 import useGetDragsByName from "./useGetDragsByName";
+import { StorageComponentsType } from "@/app/dashboard/drag/DropArea/type";
 
 const Preview: FC = () => {
   const { components } = useGetDragsByName();

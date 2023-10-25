@@ -4,7 +4,7 @@ import {
   AiOutlineArrowUp,
   AiOutlineClose,
 } from "react-icons/ai";
-import { useDragContext } from "../app/dashboard/drag/DragProvider";
+import { useDragContext } from "../DragProvider";
 import { ComponentInfoType } from "./type";
 
 type CompToolProps = {
@@ -55,7 +55,13 @@ export default function CompTool({ id }: CompToolProps) {
   }
 
   return (
-    <div className="bg-gray-400 w-full h-8 flex justify-end items-center">
+    <div className="bg-gray-400 w-8 h-[100px]">
+      <div
+        className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
+        onClick={(e) => handleDelete(e)}
+      >
+        <AiOutlineClose color="white" fontSize="14px" />
+      </div>
       {Index > 0 ? (
         <div
           className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
@@ -72,12 +78,6 @@ export default function CompTool({ id }: CompToolProps) {
           <AiOutlineArrowDown color="white" fontSize="14px" />
         </div>
       ) : null}
-      <div
-        className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
-        onClick={(e) => handleDelete(e)}
-      >
-        <AiOutlineClose color="white" fontSize="14px" />
-      </div>
     </div>
   );
 }

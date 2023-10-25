@@ -30,7 +30,7 @@ export default function DashboardNavbar() {
       </div>
       <div className="flex items-center">
         {/* <div className='mx-4'>switch</div> */}
-        <Button onClick={() => router.push("SignIn")} variant="outline">
+        <Button onClick={() => router.push("/home/SignIn")} variant="outline">
           <BiLogInCircle fontSize="20px" />
           <p className="ml-2">logout</p>
         </Button>

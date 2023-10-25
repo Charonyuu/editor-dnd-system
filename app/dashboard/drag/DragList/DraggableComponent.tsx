@@ -16,9 +16,9 @@ const DraggableComponent: FC<DraggableComponentProps> = ({ data, onDragStart }) 
         <div
             draggable
             onDragStart={(e) => onDragStart(e, type)}
-            className='m-2 border border-solid border-black rounded-xl overflow-hidden flex flex-col items-center'
+            className='m-2 text-black dark:text-white text-center rounded-xl overflow-hidden w-fit'
         >
-            <Image src={img} width={132} height={93.5} alt="Image" />
+            <Image src={img} width={132} height={93.5} className=' rounded-xl' alt="Image" />
             <p>{name}</p>
         </div>
     );

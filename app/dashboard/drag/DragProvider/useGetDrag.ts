@@ -1,8 +1,9 @@
-import { tempBoxs } from "@/components/templates";
-import { ComponentInfoType, StorageComponentsType } from "@/components/type";
+
 import { APIURL } from "@/constant";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { tempBoxs } from "../DropArea/templates";
+import { ComponentInfoType, StorageComponentsType } from "../DropArea/type";
 
 export default function useGetDrag() {
   const [components, setComponents] = useState<ComponentInfoType[]>([]);

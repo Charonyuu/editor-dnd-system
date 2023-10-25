@@ -1,13 +1,8 @@
 "use client";
 
 import React, { createContext, useState, useContext, FC } from "react";
-import { useEffect } from "react";
-import { tempBoxs } from "../../../../components/templates";
-import {
-  ComponentInfoType,
-  StorageComponentsType,
-} from "../../../../components/type";
 import useGetDrag from "./useGetDrag";
+import { ComponentInfoType } from "../DropArea/type";
 
 type DragContextType = {
   components: ComponentInfoType[];

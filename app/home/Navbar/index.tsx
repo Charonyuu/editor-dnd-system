@@ -7,10 +7,12 @@ import { Button } from "../../../components/ui/button";
 import { BiLogInCircle } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import useIsLogin from "./useIsLogin";
 
 export default function HomeNavbar() {
   const router = useRouter();
   const { theme } = useTheme();
+  const { isLogin } = useIsLogin();
   return (
     <div className="fixed top-0 w-screen flex justify-between items-center px-4 py-1 border-b border-black border-solid">
       <div className="flex items-center">
@@ -23,16 +25,16 @@ export default function HomeNavbar() {
           />
           <p className="font-semibold mr-4 font-Pixelify">Web Draggie</p>
         </a>
-        <a href="getStarted" className="mx-4">
+        <a href="/home/getStarted" className="mx-4">
           Get Started
         </a>
-        <a href="pricing" className="mx-4">
+        <a href="/home/pricing" className="mx-4">
           Pricing
         </a>
-        <a href="example" className="mx-4">
+        <a href="/home/example" className="mx-4">
           Examples
         </a>
-        <a href="contact" className="mx-4">
+        <a href="/home/contact" className="mx-4">
           Contact Me
         </a>
       </div>
@@ -40,10 +42,20 @@ export default function HomeNavbar() {
         {/* <div className='mx-4'>switch</div> */}
         <ModeSwitch />
         <I18nDropDown />
-        <Button onClick={() => router.push("SignIn")} variant="outline">
-          <BiLogInCircle fontSize="20px" />
-          <p className="ml-2">login</p>
-        </Button>
+        {!isLogin ? (
+          <Button onClick={() => router.push("/home/SignIn")} variant="outline">
+            <BiLogInCircle fontSize="20px" />
+            <p className="ml-2">login</p>
+          </Button>
+        ) : (
+          <Button
+            onClick={() => router.push("/dashboard/drag")}
+            variant="outline"
+          >
+            <BiLogInCircle fontSize="20px" />
+            <p className="ml-2">Go Drag</p>
+          </Button>
+        )}
       </div>
     </div>
   );
