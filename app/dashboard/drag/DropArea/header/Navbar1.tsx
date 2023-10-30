@@ -52,7 +52,7 @@ const Navbar1: FC<TempContainerProps> = ({ id }) => {
   return (
     <div className="w-full relative group px-5">
       <NavMenu data={data} />
-      <NavBarEditModal data={data} onComplete={onComplete} />
+      <NavBarEditModal data={data} onComplete={onComplete} id={id} />
     </div>
   );
 };
@@ -66,7 +66,7 @@ export const NavMenu: FC<{ data: NavBarType; className?: string }> = ({
   return (
     <div
       className={twMerge(
-        "w-full p-2 flex items-center rounded-b-lg mb-5",
+        "w-full p-2 flex items-center rounded-b-lg",
         className
       )}
       style={{ backgroundColor: data.bgColor, color: data.color }}

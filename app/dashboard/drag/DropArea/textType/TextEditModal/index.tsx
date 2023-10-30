@@ -16,7 +16,7 @@ import { PiTextTBold } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { twMerge } from "tailwind-merge";
 import { SaveTextType, TextType } from "../type";
-import CompOptions from "../../CompOptions";
+import DragItemOptions from "../../../DragItemOptions";
 
 type Props = {
   onComplete: (data: SaveTextType) => void;
@@ -63,16 +63,7 @@ export default function TextEditModal({ onComplete, data, id }: Props) {
 
   return (
     <>
-      <div
-        onClick={() => setIsOpen(true)}
-        className="group-hover:flex absolute top-0 left-0 hidden bg-black bg-opacity-40 items-center justify-center w-full h-full object-cover cursor-pointer"
-      >
-        <div className="text-white">
-          <TbEdit className="text-[30px]" />
-          <p>編輯</p>
-        </div>
-        <CompOptions id={id} />
-      </div>
+      <DragItemOptions id={id} openModal={() => setIsOpen(true)} />
       {isOpen ? (
         <Modal close={handleCancel}>
           <div className="flex items-center justify-between px-2">

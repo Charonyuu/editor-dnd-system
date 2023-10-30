@@ -1,6 +1,6 @@
 "use client";
 import { StorageComponentsType } from "@/app/dashboard/drag/DropArea/type";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 type ComponentInfoType = {
   data: StorageComponentsType;

@@ -1,5 +1,5 @@
-import Image2 from "./image/Image2";
-import Image1 from "./image/Image1";
+import Image2 from "./image/imageType2";
+import Image1 from "./image/imageType1";
 import Text1 from "./text/Text1";
 import Navbar1 from "./navbar/Navbar1";
 

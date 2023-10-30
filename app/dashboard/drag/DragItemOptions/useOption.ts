@@ -1,21 +1,14 @@
 import React from "react";
-import {
-  AiOutlineArrowDown,
-  AiOutlineArrowUp,
-  AiOutlineClose,
-} from "react-icons/ai";
-import { BiCopy } from "react-icons/bi";
 import { useDragContext } from "../DragProvider";
-import { ComponentInfoType } from "./type";
+import { ComponentInfoType } from "../DropArea/type";
 
-type CompToolProps = {
-  id: number;
-};
-
-export default function CompTool({ id }: CompToolProps) {
+export default function useOption(id: number) {
   const { components, setComponents } = useDragContext();
 
   const Index = components.findIndex((item) => item.id === id);
+
+  const CanMoveUp = Index > 0;
+  const CanMoveDown = Index < components.length - 1;
 
   function handleSortUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     e.stopPropagation();
@@ -58,36 +51,12 @@ export default function CompTool({ id }: CompToolProps) {
     console.log("copy");
   }
 
-  return (
-    <div className="bg-gray-400 w-8 h-[100px] flex items-center flex-col">
-      <div
-        className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
-        onClick={(e) => handleDelete(e)}
-      >
-        <AiOutlineClose color="white" fontSize="14px" />
-      </div>
-      {Index > 0 ? (
-        <div
-          className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
-          onClick={(e) => handleSortUp(e)}
-        >
-          <AiOutlineArrowUp color="white" fontSize="14px" />
-        </div>
-      ) : null}
-      {Index < components.length - 1 ? (
-        <div
-          className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
-          onClick={(e) => handleSortDown(e)}
-        >
-          <AiOutlineArrowDown color="white" fontSize="14px" />
-        </div>
-      ) : null}
-      <div
-        className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
-        onClick={handleCopy}
-      >
-        <BiCopy color="white" fontSize="14px" />
-      </div>
-    </div>
-  );
+  return {
+    handleSortUp,
+    handleSortDown,
+    handleDelete,
+    handleCopy,
+    CanMoveUp,
+    CanMoveDown,
+  };
 }

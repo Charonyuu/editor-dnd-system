@@ -126,6 +126,10 @@ export default function Pricing() {
           </p>
           <p className="flex items-center my-1">
             <BsCheck className="mr-1" fontSize="20px" color="green" />
+            Excel匯入資料
+          </p>
+          <p className="flex items-center my-1">
+            <BsCheck className="mr-1" fontSize="20px" color="green" />
             區塊空間無上限
           </p>
           <p className="flex items-center my-1">

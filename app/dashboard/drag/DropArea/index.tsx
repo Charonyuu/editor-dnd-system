@@ -1,7 +1,6 @@
 "use client";
 
 import React, { FC } from "react";
-import CompTool from "./CompTool";
 import { useDragContext } from "../DragProvider";
 import { tempBoxs } from "./templates";
 
@@ -30,11 +29,10 @@ const DroppableArea: FC = () => {
     >
       {components.map((Comp) => (
         <div
-          className="relative border border-solid rounded-xl overflow-hidden mb-2 flex"
+          className="relative rounded-xl overflow-hidden mb-2 border border-solid border-gray-500"
           key={Comp.id}
         >
           <Comp.component id={Comp.id} />
-          <CompTool id={Comp.id} />
         </div>
       ))}
     </div>

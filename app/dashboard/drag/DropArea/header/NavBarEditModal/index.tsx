@@ -14,13 +14,15 @@ import { NavBarType } from "../type";
 import { Input } from "@/components/ui/input";
 import { NavMenu } from "../Navbar1";
 import { reducer } from "./Action";
+import DragItemOptions from "../../../DragItemOptions";
 
 type Props = {
   onComplete: (data: NavBarType) => void;
   data: NavBarType;
+  id: number;
 };
 
-export default function NavBarEditModal({ onComplete, data }: Props) {
+export default function NavBarEditModal({ onComplete, data, id }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const logoRef = useRef<HTMLInputElement | null>(null);
   const [state, dispatch] = useReducer(reducer, data);
@@ -65,13 +67,7 @@ export default function NavBarEditModal({ onComplete, data }: Props) {
   };
   return (
     <>
-      <div
-        onClick={() => setIsOpen(true)}
-        className="group-hover:flex absolute top-0 left-0 hidden bg-black bg-opacity-40 items-center justify-center w-full h-full object-cover cursor-pointer z-10"
-      >
-        <TbEdit className="text-[30px]" />
-        <p>編輯</p>
-      </div>
+      <DragItemOptions id={id} openModal={() => setIsOpen(true)} />
       {isOpen ? (
         <Modal close={handleCancel}>
           <div className="flex items-center justify-between px-2">
