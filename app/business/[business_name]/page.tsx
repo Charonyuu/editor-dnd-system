@@ -6,11 +6,11 @@ import useGetDragsByName from "./useGetDragsByName";
 import { StorageComponentsType } from "@/app/dashboard/drag/DropArea/type";
 
 const Preview: FC = () => {
-  const { components } = useGetDragsByName();
+  const { components, bgColor } = useGetDragsByName();
 
   if (components.length === 0) return <p>404 No found</p>;
   return (
-    <div className="w-full h-screen bg-black relative">
+    <div className="w-full min-h-screen relative" style={{ backgroundColor: bgColor }}>
       {components.map((data: StorageComponentsType) => {
         const Component =
           FrontTempBoxs[data.type as keyof typeof FrontTempBoxs];

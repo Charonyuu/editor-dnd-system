@@ -1,3 +1,4 @@
+import Navbar1 from "./header/Navbar1";
 import Image1 from "./imageType/Image1";
 import Image2 from "./imageType/Image2";
 import Text1 from "./textType/Text1";
@@ -10,5 +11,7 @@ export const tempBoxs = {
   image1: Image1,
   image2: Image2,
 
-  text1: Text1
+  text1: Text1,
+
+  navbar1: Navbar1,
 };

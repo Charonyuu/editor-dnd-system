@@ -11,7 +11,9 @@ export type tempImageListType = {
   common: templateListType[];
 };
 
-export const headerList = [];
+export const headerList = [
+  { img: "/tempImages/header/navbar1.png", type: "navbar1", name: "導覽列" },
+];
 
 export const wordList = [
   { img: "/tempImages/type5.jpg", type: "text1", name: "文字區塊" },

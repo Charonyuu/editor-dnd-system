@@ -2,7 +2,7 @@ import React from "react";
 import {
   AiOutlineArrowDown,
   AiOutlineArrowUp,
-  AiOutlineClose,
+  AiFillDelete,
 } from "react-icons/ai";
 import { BiCopy } from "react-icons/bi";
 import { useDragContext } from "../DragProvider";
@@ -12,7 +12,7 @@ type CompToolProps = {
   id: number;
 };
 
-export default function CompTool({ id }: CompToolProps) {
+export default function CompOptions({ id }: CompToolProps) {
   const { components, setComponents } = useDragContext();
 
   const Index = components.findIndex((item) => item.id === id);
@@ -59,34 +59,38 @@ export default function CompTool({ id }: CompToolProps) {
   }
 
   return (
-    <div className="bg-gray-400 w-8 h-[100px] flex items-center flex-col">
-      <div
-        className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
-        onClick={(e) => handleDelete(e)}
-      >
-        <AiOutlineClose color="white" fontSize="14px" />
-      </div>
+    <div className="flex items-center">
       {Index > 0 ? (
         <div
-          className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
+          className="flex items-center flex-col text-white p-1 rounded-lg mx-2 cursor-pointer"
           onClick={(e) => handleSortUp(e)}
         >
-          <AiOutlineArrowUp color="white" fontSize="14px" />
+          <AiOutlineArrowUp color="white" fontSize="30px" />
+          <p>往上</p>
         </div>
       ) : null}
       {Index < components.length - 1 ? (
         <div
-          className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
+          className="flex items-center flex-col text-white p-1 rounded-lg mx-2 cursor-pointer"
           onClick={(e) => handleSortDown(e)}
         >
-          <AiOutlineArrowDown color="white" fontSize="14px" />
+          <AiOutlineArrowDown color="white" fontSize="30px" />
+          <p>往下</p>
         </div>
       ) : null}
       <div
-        className="flex items-center justify-center p-1 rounded-lg mr-2 cursor-pointer"
+        className="flex items-center flex-col text-white p-1 rounded-lg mx-2 cursor-pointer"
         onClick={handleCopy}
       >
-        <BiCopy color="white" fontSize="14px" />
+        <BiCopy color="white" fontSize="30px" />
+        <p>複製</p>
+      </div>
+      <div
+        className="flex items-center flex-col text-red-600 p-1 rounded-lg mx-2 cursor-pointer"
+        onClick={(e) => handleDelete(e)}
+      >
+        <AiFillDelete color="red" fontSize="30px" />
+        <p>刪除</p>
       </div>
     </div>
   );

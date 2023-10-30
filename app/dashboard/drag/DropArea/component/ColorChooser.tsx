@@ -25,7 +25,7 @@ export default function ColorChooser({ selectedColor, setColor }: Props) {
           className={twMerge(
             "h-6 w-6 rounded-full mr-1 cursor-pointer my-2",
             selectedColor === color
-              ? "border border-[#D0D0D0] border-solid"
+              ? "border-2 border-[#D0D0D0] border-solid"
               : ""
           )}
           style={{ backgroundColor: color }}

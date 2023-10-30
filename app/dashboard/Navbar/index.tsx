@@ -10,7 +10,7 @@ export default function DashboardNavbar() {
   const { theme } = useTheme();
   const router = useRouter();
   return (
-    <div className="fixed top-0 w-screen flex justify-between items-center px-4 py-1 border-b border-black border-solid">
+    <div className="fixed top-0 w-screen flex justify-between items-center px-4 py-1 border-b border-black border-solid z-10 bg-black">
       <div className="flex items-center">
         <a href="/home/getStarted" className="flex items-center">
           <Image

@@ -9,7 +9,7 @@ type ComponentInfoType = {
 const Image1: FC<ComponentInfoType> = ({ data }) => {
   const { url, image } = data.image || { image: "", url: "" };
   return (
-    <div className="w-full aspect-[4/1] relative group px-5 mb-4 ">
+    <div className="w-full aspect-[4/1] relative group px-5 mb-5 ">
       <img
         alt="Banner"
         src={image}

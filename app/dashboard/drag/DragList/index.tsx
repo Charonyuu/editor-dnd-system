@@ -14,7 +14,7 @@ const DraggableList: FC = () => {
   const [select, setSelected] = useState<keyof tempImageListType>("header");
 
   return (
-    <div className="max-w-[400px] h-[80vh] py-4 px-2  rounded-md bg-white border border-solid border-black dark:bg-black dark:border-white">
+    <div className="max-w-[400px] h-[80vh] fixed top-1/2 -translate-y-1/2 right-0 py-4 px-2  rounded-md bg-white border border-solid border-black dark:bg-black dark:border-white">
       <div className="flex items-center overscroll-x-auto">
         {/* header,footer */}
         <div

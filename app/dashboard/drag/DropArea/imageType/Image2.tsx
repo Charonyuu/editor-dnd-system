@@ -45,7 +45,7 @@ const Image2: FC<TempContainerProps> = ({ id }) => {
         <img
           alt="halfBanner"
           src={file[0].image}
-          className="w-full aspect-[2/1] object-cover "
+          className="w-full aspect-[1.5] object-cover "
         />
         <PictureCrop
           aspectRatio={1.5}
@@ -56,7 +56,7 @@ const Image2: FC<TempContainerProps> = ({ id }) => {
         <img
           alt="halfBanner"
           src={file[1].image}
-          className="w-full aspect-[2/1] object-cover "
+          className="w-full aspect-[1.5] object-cover "
         />
         <PictureCrop
           aspectRatio={1.5}

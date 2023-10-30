@@ -1,3 +1,6 @@
+import { NavBarType } from "./header/type";
+import { SaveTextType } from "./textType/type";
+
 // 模板的Props
 export type TempContainerProps = {
   id: number;
@@ -29,13 +32,10 @@ export type form = {
 export type StorageComponentsType = {
   id: number;
   type: string;
-  title?: string;
-  content?: string;
+  navbarType?: NavBarType;
+  textType?: SaveTextType[];
   images?: StorageimageType[];
-  url?: string[];
-  forms?: form[];
   image?: StorageimageType;
-  bg?: StorageimageType;
 };
 
 // 編輯模式components[]的type
@@ -44,11 +44,8 @@ export type ComponentInfoType = {
   _id?: string;
   id: number;
   type: string;
-  title?: string;
-  content?: string;
+  navbarType?: NavBarType;
+  textType?: SaveTextType[];
   images?: imageType[];
-  url?: string[];
-  forms?: form[];
   image?: imageType;
-  bg?: imageType;
 };

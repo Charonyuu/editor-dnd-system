@@ -7,6 +7,8 @@ import { ComponentInfoType } from "../DropArea/type";
 type DragContextType = {
   components: ComponentInfoType[];
   setComponents: React.Dispatch<React.SetStateAction<ComponentInfoType[]>>;
+  bgColor: string;
+  setBgColor: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const DragContext = createContext<DragContextType | null>(null);
@@ -24,9 +26,11 @@ type ProviderProps = {
 };
 
 export default function DragComponentProvider({ children }: ProviderProps) {
-  const { components, setComponents } = useGetDrag();
+  const { components, setComponents, bgColor, setBgColor } = useGetDrag();
   return (
-    <DragContext.Provider value={{ components, setComponents }}>
+    <DragContext.Provider
+      value={{ components, setComponents, bgColor, setBgColor }}
+    >
       {children}
     </DragContext.Provider>
   );
