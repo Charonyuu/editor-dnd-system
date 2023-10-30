@@ -124,7 +124,7 @@ export default function TextEditModal({ onComplete, data, id }: Props) {
               </div>
               <p>動畫效果:</p>
               {animationType.map((data) => (
-                <label className="mr-2">
+                <label className="mr-2" key={data.type}>
                   <input
                     type="radio"
                     value={data.type}

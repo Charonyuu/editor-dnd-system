@@ -22,6 +22,7 @@ export default function ColorChooser({ selectedColor, setColor }: Props) {
     <div className="flex items-center">
       {colors.map((color) => (
         <div
+          key={color}
           className={twMerge(
             "h-6 w-6 rounded-full mr-1 cursor-pointer my-2",
             selectedColor === color

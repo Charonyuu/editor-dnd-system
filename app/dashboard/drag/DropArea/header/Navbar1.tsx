@@ -83,7 +83,7 @@ export const NavMenu: FC<{ data: NavBarType; className?: string }> = ({
       <NavigationMenu>
         <NavigationMenuList>
           {data.navs.map((nav) => (
-            <NavigationMenuItem>
+            <NavigationMenuItem key={nav.id}>
               {nav.isDropDown ? (
                 <>
                   <NavigationMenuTrigger>{nav.name}</NavigationMenuTrigger>

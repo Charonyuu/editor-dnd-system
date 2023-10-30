@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
-import { FrontTempBoxs } from "./frontTemplates";
 import { StorageComponentsType } from "../drag/DropArea/type";
 
 const Preview: FC = () => {
@@ -23,7 +22,7 @@ const Preview: FC = () => {
         {"<"}Back Page
       </button>
 
-      {jsonParse.map((data: StorageComponentsType) => {
+      {/* {jsonParse.map((data: StorageComponentsType) => {
         const Component =
           FrontTempBoxs[data.type as keyof typeof FrontTempBoxs];
         return (
@@ -31,7 +30,7 @@ const Preview: FC = () => {
             <Component data={data} />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };
