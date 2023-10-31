@@ -38,7 +38,6 @@ export default function TextEditModal({ onComplete, data, id }: Props) {
     });
   }, [data]);
 
-  console.log(setting);
   // 處理選擇變更的函數
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSetting((prev) => ({ ...prev, animation: event.target.value }));

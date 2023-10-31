@@ -1,5 +1,5 @@
 import { tempBoxs } from "@/app/dashboard/drag/DropArea/templates";
-import { StorageComponentsType } from "@/app/dashboard/drag/DropArea/type";
+import { StorageComponentsType } from "@/Types/type";
 import { APIURL } from "@/constant";
 import axios from "axios";
 import { usePathname } from "next/navigation";

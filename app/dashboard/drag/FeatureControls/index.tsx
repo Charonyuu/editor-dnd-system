@@ -25,32 +25,23 @@ export default function FeatureControls() {
           let images;
           if (otherEle.images) {
             images = await Promise.all(
-              otherEle.images.map(async (file) => {
+              otherEle.images.map(async (item) => {
                 // 如果是字符串，直接返回
-                if (!file.image.includes("blob")) return file;
+                if (!item.img.includes("blob")) return item;
 
                 // 如果是File（或Blob），读取为DataURL
-                const image = await uploadFile(file.image);
-                return { ...file, image };
+                const image = await uploadFile(item.img);
+                return { ...item, img: image };
               })
             );
             result = { ...result, images };
           }
-          if (otherEle.image) {
-            console.log(otherEle.image);
-            if (!otherEle.image.image.includes("blob"))
-              return (result = { ...result, image: otherEle.image });
-
-            const fileName = await uploadFile(otherEle.image.image);
-            return (result = {
-              ...result,
-              image: { ...otherEle.image, image: fileName },
-            });
-          }
+          console.log(result);
 
           return result;
         })
       );
+      console.log("saveJson", saveJson);
       await axios.post(
         `${APIURL}/saveDrags`,
         { data: { bgColor: bgColor, drags: saveJson } },

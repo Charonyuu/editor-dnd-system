@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
-import { StorageComponentsType } from "../drag/DropArea/type";
+import { StorageComponentsType } from "../../../Types/type";
 
 const Preview: FC = () => {
   const router = useRouter();

@@ -6,7 +6,6 @@ export default function useIsLogin() {
   const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     const cookie = getCookie("jwt");
-    console.log(cookie);
     if (cookie) {
       setIsLogin(true);
     } else {

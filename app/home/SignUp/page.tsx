@@ -16,18 +16,18 @@ export default function SignUp() {
   if (loading) return <div>loading...</div>;
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center">
-      <div className="bg-black border-white border border-solid rounded-xl p-10 flex flex-col items-center">
+      <div className="bg-black text-white border-white border border-solid rounded-xl p-10 flex flex-col items-center">
         <h1 className="text-2xl">Draggie SignUp</h1>
         <p>Get started by registering an account</p>
         <Input
-          className="w-full my-2"
+          className="w-full my-2 text-black"
           type="text"
           placeholder="輸入網站名稱或公司名稱"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <Input
-          className="w-full my-2"
+          className="w-full my-2 text-black"
           type="text"
           placeholder="Account or ProjectId"
           value={account}

@@ -18,10 +18,17 @@ type Action =
         type: string;
         value: string | boolean | number;
       };
+    }
+  | {
+      type: "INIT_DATA";
+      payload: NavBarType;
     };
 
 export function reducer(state: NavBarType, action: Action): NavBarType {
   switch (action.type) {
+    case "INIT_DATA":
+      return action.payload;
+
     case "SET_LOGO":
       return { ...state, logo: action.payload };
 

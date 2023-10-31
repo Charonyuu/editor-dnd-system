@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { StorageComponentsType } from "@/app/dashboard/drag/DropArea/type";
+import { StorageComponentsType } from "@/Types/type";
 
 type ComponentInfoType = {
   data: StorageComponentsType;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDragContext } from "../DragProvider";
-import { ComponentInfoType } from "../DropArea/type";
+import { ComponentInfoType } from "../../../../Types/type";
 
 export default function useOption(id: number) {
   const { components, setComponents } = useDragContext();

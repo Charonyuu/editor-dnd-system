@@ -39,7 +39,7 @@ export default function Modal({
       />
       <div
         className={twMerge(
-          "h-[80vh] w-[80vw] z-20 bg-black text-white border-white p-3 border-solid border rounded-[5px] relative",
+          "h-[80vh] w-[80vw] z-20 bg-white text-black border-black p-3 border-solid border rounded-[5px] relative",
           className
         )}
       >

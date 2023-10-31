@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useContext, FC } from "react";
 import useGetDrag from "./useGetDrag";
-import { ComponentInfoType } from "../DropArea/type";
+import { ComponentInfoType } from "../../../../Types/type";
 
 type DragContextType = {
   components: ComponentInfoType[];

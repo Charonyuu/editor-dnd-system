@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-
+import { ChromePicker, TwitterPicker } from "react-color";
+import useOutsideClick from "@/lib/hooks/useOutsideClick";
 type Props = {
   selectedColor: string;
   setColor: (color: string) => void;
@@ -18,8 +19,13 @@ export default function ColorChooser({ selectedColor, setColor }: Props) {
     "#000000", // 黑色
     "#FFFFFF", // 白色
   ];
+  const [isOpen, setIsOpen] = useState(false);
+  const [chooseColor, setChooseColor] = useState<any>();
+  const colorPickerRef = useOutsideClick<HTMLDivElement>(() =>
+    isOpen === true ? setIsOpen(false) : {}
+  );
   return (
-    <div className="flex items-center">
+    <div className="flex items-center relative">
       {colors.map((color) => (
         <div
           key={color}
@@ -33,6 +39,28 @@ export default function ColorChooser({ selectedColor, setColor }: Props) {
           onClick={() => setColor(color)}
         />
       ))}
+      <div
+        className="h-6 w-6 rounded-full"
+        style={{
+          background: chooseColor
+            ? chooseColor.hex
+            : "conic-gradient(yellow, green, blue, purple, red, orange, yellow)",
+        }}
+        onClick={() => setIsOpen(true)}
+      />
+      {isOpen && (
+        <div
+          className="absolute z-20 bg-white text-white top-[40px] right-[-10px]"
+          ref={colorPickerRef}
+        >
+          <TwitterPicker
+            color={chooseColor}
+            onChange={(color) => setColor(color.hex)}
+            triangle="top-right"
+            className=" "
+          />
+        </div>
+      )}
     </div>
   );
 }

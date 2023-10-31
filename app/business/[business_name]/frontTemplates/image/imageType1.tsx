@@ -1,5 +1,6 @@
 "use client";
-import { StorageComponentsType } from "@/app/dashboard/drag/DropArea/type";
+import { StorageComponentsType } from "@/Types/type";
+import ImageType1 from "@/components/Drags/Images/ImageType1";
 import React, { FC } from "react";
 
 type ComponentInfoType = {
@@ -7,16 +8,9 @@ type ComponentInfoType = {
 };
 
 const Image1: FC<ComponentInfoType> = ({ data }) => {
-  const { url, image } = data.image || { image: "", url: "" };
-  return (
-    <div className="w-full aspect-[4/1] relative group px-5 mb-5 ">
-      <img
-        alt="Banner"
-        src={image}
-        className="w-full h-full object-cover rounded-lg"
-      />
-    </div>
-  );
+  const { images } = data;
+  console.log(images);
+  return <ImageType1 data={images!} />;
 };
 
 export default Image1;

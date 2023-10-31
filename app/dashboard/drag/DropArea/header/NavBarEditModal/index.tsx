@@ -1,20 +1,19 @@
-import React, { useReducer, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 
 import ColorChooser from "../../component/ColorChooser";
 import Modal from "@/components/Modal";
 
 import { MdOutlineFormatColorText } from "react-icons/md";
 import { IoColorPaletteOutline } from "react-icons/io5";
-import { TbEdit, TbLink } from "react-icons/tb";
+import {  TbLink } from "react-icons/tb";
 import { PiTextTBold, PiImageBold } from "react-icons/pi";
 import { BiImageAdd } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
-import { twMerge } from "tailwind-merge";
 import { NavBarType } from "../type";
 import { Input } from "@/components/ui/input";
-import { NavMenu } from "../Navbar1";
 import { reducer } from "./Action";
 import DragItemOptions from "../../../DragItemOptions";
+import { NavMenu } from "@/components/Drags/Navbar/NavBar1";
 
 type Props = {
   onComplete: (data: NavBarType) => void;
@@ -27,13 +26,16 @@ export default function NavBarEditModal({ onComplete, data, id }: Props) {
   const logoRef = useRef<HTMLInputElement | null>(null);
   const [state, dispatch] = useReducer(reducer, data);
 
+  useEffect(() => {
+    dispatch({ type: "INIT_DATA", payload: data });
+  }, [data]);
+
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const url = URL.createObjectURL(e.target.files[0]);
       dispatch({ type: "SET_LOGO", payload: url });
     }
   };
-  console.log(state);
   // 處理選擇變更的函數
 
   function handleSave() {

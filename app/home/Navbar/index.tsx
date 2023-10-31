@@ -40,7 +40,7 @@ export default function HomeNavbar() {
       </div>
       <div className="flex items-center">
         {/* <div className='mx-4'>switch</div> */}
-        <ModeSwitch />
+        {/* <ModeSwitch /> */}
         <I18nDropDown />
         {!isLogin ? (
           <Button onClick={() => router.push("/home/SignIn")} variant="outline">

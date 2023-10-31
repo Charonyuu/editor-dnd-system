@@ -1,6 +1,6 @@
 import React, { FC, useLayoutEffect, useState } from "react";
 import TextEditModal from "./TextEditModal";
-import { TempContainerProps } from "../type";
+import { TempContainerProps } from "../../../../../Types/type";
 import { SaveTextType, TextType } from "./type";
 import { useDragContext } from "../../DragProvider";
 
@@ -48,7 +48,7 @@ const Text1: FC<TempContainerProps> = ({ id }) => {
           </p>
         ))}
       </div> */}
-      <TextEditModal onComplete={onComplete} data={data} id={id}/>
+      <TextEditModal onComplete={onComplete} data={data} id={id} />
     </div>
   );
 };

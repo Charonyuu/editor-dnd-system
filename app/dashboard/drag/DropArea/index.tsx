@@ -29,7 +29,7 @@ const DroppableArea: FC = () => {
     >
       {components.map((Comp) => (
         <div
-          className="relative rounded-xl overflow-hidden mb-2 border border-solid border-gray-500"
+          className="relative w-full rounded-xl overflow-hidden mb-2 border border-solid border-gray-500"
           key={Comp.id}
         >
           <Comp.component id={Comp.id} />

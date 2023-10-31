@@ -1,5 +1,5 @@
-import { NavMenu } from "@/app/dashboard/drag/DropArea/header/Navbar1";
-import { StorageComponentsType } from "@/app/dashboard/drag/DropArea/type";
+import { StorageComponentsType } from "@/Types/type";
+import { NavMenu } from "@/components/Drags/Navbar/NavBar1";
 import React, { FC } from "react";
 
 type ComponentInfoType = {
@@ -8,11 +8,7 @@ type ComponentInfoType = {
 
 const Navbar1: FC<ComponentInfoType> = ({ data }) => {
   const { navbarType } = data;
-  return (
-    <div className="w-full relative group px-5">
-      <NavMenu data={navbarType!} />
-    </div>
-  );
+  return <NavMenu data={navbarType!} />;
 };
 
 export default Navbar1;
