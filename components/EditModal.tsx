@@ -1,31 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { twMerge } from "tailwind-merge";
-import { IoClose } from "react-icons/io5";
+import { Button } from "./ui/button";
 
 type ModalProps = {
   children?: React.ReactNode;
   className?: string;
   modalClassName?: string;
-  close?: () => void;
+  handleClose?: () => void;
+  handleSave?: () => void;
 };
 
-export default function Modal({
+export default function EditModal({
   children,
   className,
   modalClassName,
-  close,
+  handleClose,
+  handleSave,
 }: ModalProps) {
-  //   const { isMobile } = useIsMobile();
-  //   useEffect(() => {
-  //     if (!isMobile) return;
-  //     document.body.style.overflowY = "hidden";
-
-  //     return () => {
-  //       document.body.style.overflowY = "unset";
-  //     };
-  //   }, []);
-
   return ReactDOM.createPortal(
     <div
       className={twMerge(
@@ -35,8 +27,12 @@ export default function Modal({
     >
       <div
         className=" absolute w-full h-full bg-black bg-opacity-40 flex justify-center items-center"
-        onClick={close}
+        onClick={handleClose}
       />
+      <div className="flex items-center justify-between px-2">
+        <Button onClick={handleClose}>取消</Button>
+        <Button onClick={handleSave}>儲存</Button>
+      </div>
       <div
         className={twMerge(
           "h-[80vh] w-[80vw] z-20 bg-white text-black border-black p-3 border-solid border rounded-[5px] relative",

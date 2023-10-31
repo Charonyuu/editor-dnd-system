@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
 
 import ColorChooser from "../../component/ColorChooser";
-import Modal from "@/components/Modal";
+import Modal from "@/components/EditModal";
 
 import { MdOutlineFormatColorText } from "react-icons/md";
 import { IoColorPaletteOutline } from "react-icons/io5";
-import {  TbLink } from "react-icons/tb";
+import { TbLink } from "react-icons/tb";
 import { PiTextTBold, PiImageBold } from "react-icons/pi";
 import { BiImageAdd } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
@@ -71,11 +71,7 @@ export default function NavBarEditModal({ onComplete, data, id }: Props) {
     <>
       <DragItemOptions id={id} openModal={() => setIsOpen(true)} />
       {isOpen ? (
-        <Modal close={handleCancel}>
-          <div className="flex items-center justify-between px-2">
-            <Button onClick={() => setIsOpen(false)}>取消</Button>
-            <Button onClick={handleSave}>儲存</Button>
-          </div>
+        <Modal handleClose={handleCancel} handleSave={handleSave}>
           <div className="flex">
             <div className="w-[400px] p-2 overflow-auto flex-1">
               <div className="flex items-center">

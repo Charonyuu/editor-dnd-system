@@ -1,25 +1,22 @@
 import React, { FC, useLayoutEffect, useState } from "react";
 import TextEditModal from "./TextEditModal";
-import { TempContainerProps } from "../../../../../Types/type";
+import { TempContainerProps } from "@/Types/type";
 import { SaveTextType, TextType } from "./type";
 import { useDragContext } from "../../DragProvider";
 
-const Text1: FC<TempContainerProps> = ({ id }) => {
-  const { components, setComponents } = useDragContext();
-  const [data, setData] = useState<SaveTextType>({
-    title: "標題",
-    titleColor: "#FFFFFF",
-    content: ["內文...."],
-    contentColor: "#FFFFFF",
-    animation: "",
-    textAlign: "left",
-  });
-  useLayoutEffect(() => {
-    const data = components.find((ele) => ele.id === id);
-    if (data?.textType) {
-      setData(data.textType[0]);
+const Text1: FC<TempContainerProps> = ({ id, ComponentData }) => {
+  const { setComponents } = useDragContext();
+  const [data, setData] = useState<SaveTextType>(
+    ComponentData?.textType![0] || {
+      title: "標題",
+      titleColor: "#FFFFFF",
+      content: ["內文...."],
+      contentColor: "#FFFFFF",
+      animation: "",
+      textAlign: "left",
     }
-  }, []);
+  );
+
   function onComplete(setting: SaveTextType) {
     setData(setting);
     setComponents((prev) => {

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useReducer, useState } from "react";
 
-import Modal from "@/components/Modal";
+import Modal from "@/components/EditModal";
 import { Button } from "@/components/ui/button";
 import DragItemOptions from "../../../DragItemOptions";
 import PictureCrop from "@/components/PictureCrop";
@@ -45,11 +45,11 @@ export default function ImageEditModal({ id, data, onComplete }: Props) {
     <>
       <DragItemOptions id={id} openModal={() => setIsOpen(true)} />
       {isOpen ? (
-        <Modal close={handleCancel} className=" overflow-hidden ">
-          <div className="flex items-center justify-between px-2">
-            <Button onClick={() => setIsOpen(false)}>取消</Button>
-            <Button onClick={handleSave}>儲存</Button>
-          </div>
+        <Modal
+          handleClose={handleCancel}
+          handleSave={handleSave}
+          className=" overflow-hidden "
+        >
           <div className="flex h-full overflow-auto pb-4">
             <div className="w-[400px] p-2 ">
               {state.map((item) => (

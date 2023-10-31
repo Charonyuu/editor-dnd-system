@@ -5,6 +5,7 @@ import {
   AiFillDelete,
   AiOutlineArrowDown,
   AiOutlineArrowUp,
+  AiOutlineSetting,
 } from "react-icons/ai";
 import { BiCopy } from "react-icons/bi";
 
@@ -30,6 +31,13 @@ export default function DragItemOptions({ id, openModal }: CompToolProps) {
       >
         <TbEdit fontSize="20px" />
         <p>編輯</p>
+      </div>
+      <div
+        className="flex items-center flex-col text-white p-1 rounded-lg mx-2 cursor-pointer"
+        onClick={openModal}
+      >
+        <AiOutlineSetting fontSize="20px" />
+        <p>設定</p>
       </div>
       {CanMoveUp ? (
         <div

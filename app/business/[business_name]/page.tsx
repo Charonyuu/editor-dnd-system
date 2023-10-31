@@ -18,8 +18,8 @@ const Preview: FC = () => {
         const Component =
           FrontTempBoxs[data.type as keyof typeof FrontTempBoxs];
         return (
-          <div className="w-full relative group mb-5 ">
-            <Component data={data} key={data.id} />
+          <div className="w-full relative group mb-5 " key={data.id}>
+            <Component data={data} />
           </div>
         );
       })}

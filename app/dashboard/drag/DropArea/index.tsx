@@ -9,12 +9,20 @@ const DroppableArea: FC = () => {
   const preventDefault = (e: React.DragEvent) => {
     e.preventDefault();
   };
+
   const handleOnDrop = (e: React.DragEvent) => {
     const CompType = e.dataTransfer.getData("component_type");
     const Component = {
       component: tempBoxs[CompType as keyof typeof tempBoxs],
       id: Date.now(),
       type: CompType,
+      setting: {
+        bgColor: "#FFFFFF",
+        padding: 0,
+        width: 100,
+        align: "left",
+        animation: "none",
+      },
     };
 
     setComponents([...components, Component]);
@@ -27,14 +35,17 @@ const DroppableArea: FC = () => {
       className="w-full min-h-screen relative p-5"
       style={{ backgroundColor: bgColor }}
     >
-      {components.map((Comp) => (
-        <div
-          className="relative w-full rounded-xl overflow-hidden mb-2 border border-solid border-gray-500"
-          key={Comp.id}
-        >
-          <Comp.component id={Comp.id} />
-        </div>
-      ))}
+      {components.map((Comp) => {
+        const { id, ...ComponentData } = Comp;
+        return (
+          <div
+            className="relative w-full rounded-xl overflow-hidden mb-2 border border-solid border-gray-500"
+            key={Comp.id}
+          >
+            <Comp.component id={Comp.id} ComponentData={ComponentData} />
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 
 import ColorChooser from "../../component/ColorChooser";
-import Modal from "@/components/Modal";
+import Modal from "@/components/EditModal";
 
 import { MdOutlineFormatColorText } from "react-icons/md";
 import { IoColorPaletteOutline } from "react-icons/io5";
@@ -64,11 +64,7 @@ export default function TextEditModal({ onComplete, data, id }: Props) {
     <>
       <DragItemOptions id={id} openModal={() => setIsOpen(true)} />
       {isOpen ? (
-        <Modal close={handleCancel}>
-          <div className="flex items-center justify-between px-2">
-            <Button onClick={() => setIsOpen(false)}>取消</Button>
-            <Button onClick={handleSave}>儲存</Button>
-          </div>
+        <Modal handleClose={handleCancel} handleSave={handleSave}>
           <div className="flex">
             <div className="w-[400px] p-2">
               <div className="flex items-center">

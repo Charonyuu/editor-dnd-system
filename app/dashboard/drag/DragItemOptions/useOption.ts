@@ -1,12 +1,13 @@
 import React from "react";
 import { useDragContext } from "../DragProvider";
 import { ComponentInfoType } from "../../../../Types/type";
+import { SettingType } from "@/Types/settingType";
 
 export default function useOption(id: number) {
   const { components, setComponents } = useDragContext();
 
   const Index = components.findIndex((item) => item.id === id);
-
+  const item = components[Index];
   const CanMoveUp = Index > 0;
   const CanMoveDown = Index < components.length - 1;
 
@@ -40,6 +41,14 @@ export default function useOption(id: number) {
     });
   }
 
+  function handleSetting(setting: SettingType) {
+    setComponents((prev: ComponentInfoType[]) => {
+      const temp = [...prev];
+      temp[Index] = { ...temp[Index], setting };
+      return temp;
+    });
+  }
+
   function handleDelete(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     e.stopPropagation();
     setComponents((prev: ComponentInfoType[]) => {
@@ -48,14 +57,20 @@ export default function useOption(id: number) {
     });
   }
   function handleCopy() {
-    console.log("copy");
+    setComponents((prev: ComponentInfoType[]) => {
+      const temp = [...prev];
+      temp.splice(Index, 0, { ...item, id: Date.now() });
+      return temp;
+    });
   }
 
   return {
     handleSortUp,
     handleSortDown,
+    handleSetting,
     handleDelete,
     handleCopy,
+    item,
     CanMoveUp,
     CanMoveDown,
   };

@@ -2,12 +2,13 @@ import { NavBarType } from "../app/dashboard/drag/DropArea/header/type";
 
 import { SaveTextType } from "../app/dashboard/drag/DropArea/textType/type";
 import { ImageType } from "./imageType";
+import { SettingType } from "./settingType";
 
 // 模板的Props
 export type TempContainerProps = {
   id: number;
+  ComponentData?: ComponentInfoType;
 };
-
 
 // 文章的props
 export type form = {
@@ -21,6 +22,7 @@ export type form = {
 export type StorageComponentsType = {
   id: number;
   type: string;
+  setting: SettingType;
   navbarType?: NavBarType;
   textType?: SaveTextType[];
   images?: ImageType[];
