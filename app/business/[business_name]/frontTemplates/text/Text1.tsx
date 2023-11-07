@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { StorageComponentsType } from "@/Types/type";
+import TextType1 from "@/components/Drags/Text/TextType";
 
 type ComponentInfoType = {
   data: StorageComponentsType;
@@ -7,27 +8,13 @@ type ComponentInfoType = {
 
 const Text1: FC<ComponentInfoType> = ({ data }) => {
   const textType = data.textType?.[0] || {
-    title: "標題",
-    titleColor: "#FFFFFF",
-    content: ["內文...."],
-    contentColor: "#FFFFFF",
-    animation: "",
+    text: "",
     textAlign: "left",
   };
 
-  const { textAlign, titleColor, title, contentColor, content } = textType;
-
   return (
-    <div
-      className="w-full relative group px-5 py-1 mb-5"
-      style={{ textAlign: textAlign }}
-    >
-      <p style={{ color: titleColor }}>{title}</p>
-      <div style={{ color: contentColor }}>
-        {content?.map((text, index) => (
-          <p key={index}>{text || "\u00A0"}</p>
-        ))}
-      </div>
+    <div className="w-full relative group px-5 py-1 mb-5">
+      <TextType1 data={textType} />
     </div>
   );
 };

@@ -77,4 +77,60 @@
   input:focus,textarea:focus{
     outline: none;
   }
+  h1{
+    @apply text-2xl
+  }
+  h2{
+    @apply text-xl
+  }
+  h3{
+    @apply text-lg
+  }
+  ul{
+    @apply  list-disc list-inside pl-6
+  }
+  ol{
+    @apply list-decimal list-inside pl-6
+  }
+}
+
+.animation_RFI{
+    animation: RightFadeIn 1s ease-in-out;
+}
+.animation_LFI{
+    animation: LeftFadeIn 1s ease-in-out;
+}
+.animation_BFI{
+    animation: BottomFadeIn 1s ease-in-out;
+}
+
+@keyframes LeftFadeIn{
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes BottomFadeIn{
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes RightFadeIn{
+    0% {
+    opacity: 0;
+    transform: translateX(100px);
+    }
+    100% {
+    opacity: 1;
+    transform: translateX(0);
+    }
 }

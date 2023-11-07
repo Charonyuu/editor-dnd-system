@@ -29,16 +29,17 @@ export default function EditModal({
         className=" absolute w-full h-full bg-black bg-opacity-40 flex justify-center items-center"
         onClick={handleClose}
       />
-      <div className="flex items-center justify-between px-2">
-        <Button onClick={handleClose}>取消</Button>
-        <Button onClick={handleSave}>儲存</Button>
-      </div>
+
       <div
         className={twMerge(
           "h-[80vh] w-[80vw] z-20 bg-white text-black border-black p-3 border-solid border rounded-[5px] relative",
           className
         )}
       >
+        <div className="flex items-center justify-between px-2">
+          <Button onClick={handleClose}>取消</Button>
+          <Button onClick={handleSave}>儲存</Button>
+        </div>
         {children}
       </div>
     </div>,

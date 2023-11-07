@@ -1,26 +1,24 @@
 import { ImageType } from "@/Types/imageType";
 import React, { FC } from "react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import Slider from "react-slick";
 import { twMerge } from "tailwind-merge";
 
-function SampleNextArrow(props: any) {
-  const { className, style, onClick } = props;
+function NextArrow(props: any) {
+  const { onClick } = props;
   return (
-    <AiOutlineArrowRight
-      className={className}
-      style={{ ...style, color: "black" }}
+    <FaAngleRight
+      className="absolute bottom-4 bg-black bg-opacity-50 rounded-full w-5 h-5 z-[1] right-1 pl-[2px] text-white border border-solid border-white cursor-pointer hover:right-0 transition-all"
       onClick={onClick}
     />
   );
 }
 
-function SamplePrevArrow(props: any) {
-  const { className, style, onClick } = props;
+function PrevArrow(props: any) {
+  const { onClick } = props;
   return (
-    <AiOutlineArrowLeft
-      className={className}
-      style={{ ...style, color: "black" }}
+    <FaAngleLeft
+      className="absolute bottom-4 bg-black bg-opacity-50 rounded-full w-5 h-5 z-[1] left-1 pr-[2px] text-white border border-solid border-white cursor-pointer hover:left-0 transition-all"
       onClick={onClick}
     />
   );
@@ -31,11 +29,12 @@ const ImageType1: FC<{ data: ImageType[] }> = ({ data }) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    autoplay: true,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
   return (
     <div className="">

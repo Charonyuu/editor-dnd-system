@@ -1,24 +1,22 @@
-import React, { FC, useLayoutEffect, useState } from "react";
+import React, { FC, useLayoutEffect, useRef, useState } from "react";
 import TextEditModal from "./TextEditModal";
 import { TempContainerProps } from "@/Types/type";
-import { SaveTextType, TextType } from "./type";
+import { TextType } from "../../../../../Types/textType";
 import { useDragContext } from "../../DragProvider";
+import TextType1 from "@/components/Drags/Text/TextType";
 
 const Text1: FC<TempContainerProps> = ({ id, ComponentData }) => {
   const { setComponents } = useDragContext();
-  const [data, setData] = useState<SaveTextType>(
+  const originalDataRef = useRef<TextType>(
     ComponentData?.textType![0] || {
-      title: "標題",
-      titleColor: "#FFFFFF",
-      content: ["內文...."],
-      contentColor: "#FFFFFF",
-      animation: "",
       textAlign: "left",
+      text: "",
     }
   );
+  const [data, setData] = useState<TextType>(originalDataRef.current);
 
-  function onComplete(setting: SaveTextType) {
-    setData(setting);
+  function onComplete(setting: TextType) {
+    originalDataRef.current = setting;
     setComponents((prev) => {
       const componentsTemp = [...prev];
       const index = componentsTemp.findIndex((ele) => ele.id === id);
@@ -26,26 +24,21 @@ const Text1: FC<TempContainerProps> = ({ id, ComponentData }) => {
       return componentsTemp;
     });
   }
-  return (
-    <div
-      className="w-full relative group px-5 py-1"
-      style={{ textAlign: data.textAlign }}
-    >
-      <p style={{ color: data.titleColor }}>{data.title}</p>
-      <div style={{ color: data.contentColor }}>
-        {data.content.map((content, index) => (
-          <p key={index}>{content || "\u00A0"}</p>
-        ))}
-      </div>
 
-      {/* <div>
-        {content.map((word, index) => (
-          <p className="text-sm" key={index}>
-            {word}
-          </p>
-        ))}
-      </div> */}
-      <TextEditModal onComplete={onComplete} data={data} id={id} />
+  function onCancel() {
+    setData(originalDataRef.current);
+  }
+
+  return (
+    <div className="w-full relative group px-5 py-1">
+      <TextType1 data={data} />
+      <TextEditModal
+        onComplete={onComplete}
+        onCancel={onCancel}
+        data={data}
+        setData={setData}
+        id={id}
+      />
     </div>
   );
 };

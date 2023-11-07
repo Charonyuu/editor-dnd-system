@@ -1,6 +1,6 @@
 import { NavBarType } from "../app/dashboard/drag/DropArea/header/type";
 
-import { SaveTextType } from "../app/dashboard/drag/DropArea/textType/type";
+import { SaveTextType } from "./textType";
 import { ImageType } from "./imageType";
 import { SettingType } from "./settingType";
 

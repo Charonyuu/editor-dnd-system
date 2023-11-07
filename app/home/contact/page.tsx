@@ -23,12 +23,12 @@ export default function ContactMe() {
 
   return (
     <div className=" flex-1 flex  items-center justify-center ">
-      <div className="border-white border-solid border w-[500px] p-4 rounded-xl">
+      <div className="border-black border-solid border w-[500px] p-4 rounded-xl">
         <p className="text-2xl flex items-center">
           <AiOutlineMessage />
           聯絡我們
         </p>
-        <p className="text-sm text-gray-300">
+        <p className="text-sm text-gray-500">
           舉報問題、暸解內容或需要客製化服務，歡迎訊息
         </p>
 
@@ -39,7 +39,7 @@ export default function ContactMe() {
             value={message.name}
             onChange={(e) => handleChange(e, "name")}
             placeholder="請輸入姓名或公司名稱"
-            className="w-full my-1 bg-transparent border-white border-solid border p-1 rounded-lg"
+            className="w-full my-1 bg-transparent border-black border-solid border p-1 rounded-lg"
           />
         </div>
         <div>
@@ -48,7 +48,7 @@ export default function ContactMe() {
             value={message.contact}
             onChange={(e) => handleChange(e, "contact")}
             placeholder="請輸入聯絡方式:電話或email"
-            className="w-full my-1 bg-transparent border-white border-solid border p-1 rounded-lg"
+            className="w-full my-1 bg-transparent border-black border-solid border p-1 rounded-lg"
           />
         </div>
         <div>
@@ -57,7 +57,7 @@ export default function ContactMe() {
             value={message.title}
             onChange={(e) => handleChange(e, "title")}
             placeholder="請輸入標題"
-            className="w-full my-1 bg-transparent border-white border-solid border p-1 rounded-lg"
+            className="w-full my-1 bg-transparent border-black border-solid border p-1 rounded-lg"
           />
         </div>
         <div>
@@ -67,7 +67,7 @@ export default function ContactMe() {
             onChange={(e) => handleChange(e, "content")}
             placeholder="請輸入回報問題或瞭解詳細"
             rows={8}
-            className="w-full my-1 bg-transparent border-white border-solid border p-1 rounded-lg resize-none"
+            className="w-full my-1 bg-transparent border-black border-solid border p-1 rounded-lg resize-none"
           />
         </div>
         <div className="w-full items-center justify-center flex">
@@ -79,11 +79,11 @@ export default function ContactMe() {
           </Button>
         </div>
         {/* 傳送email */}
-        <div className="text-sm text-gray-300 flex items-center justify-center w-full mt-3">
+        <div className="text-sm text-gray-500 flex items-center justify-center w-full mt-3">
           <p>或傳送email至</p>
           <a
             href={"mailto: draggieweb@gmail.com"}
-            className="flex items-center text-white underline ml-1"
+            className="flex items-center text-black underline ml-1"
           >
             <MdOutlineMail className="text-lg" />
             draggieweb@gmail.com

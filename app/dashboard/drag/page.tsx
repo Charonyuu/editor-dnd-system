@@ -10,10 +10,10 @@ const Main: FC = () => {
   return (
     <DragComponentProvider>
       <div className="flex w-screen">
-        <div className="w-[calc(100vw_-_450px)]">
+        <div className="w-[calc(100vw_-_350px)]">
           <DroppableArea />
         </div>
-        <div className="relative w-[450px] flex-shrink-0">
+        <div className="relative w-[350px] flex-shrink-0">
           <DraggableList />
         </div>
       </div>

@@ -8,6 +8,7 @@ import {
   AiOutlineSetting,
 } from "react-icons/ai";
 import { BiCopy } from "react-icons/bi";
+import SettingModal from "./SettingModal";
 
 type CompToolProps = {
   id: number;
@@ -20,6 +21,7 @@ export default function DragItemOptions({ id, openModal }: CompToolProps) {
     handleSortDown,
     handleDelete,
     handleCopy,
+    item,
     CanMoveUp,
     CanMoveDown,
   } = useOption(id);
@@ -32,13 +34,7 @@ export default function DragItemOptions({ id, openModal }: CompToolProps) {
         <TbEdit fontSize="20px" />
         <p>編輯</p>
       </div>
-      <div
-        className="flex items-center flex-col text-white p-1 rounded-lg mx-2 cursor-pointer"
-        onClick={openModal}
-      >
-        <AiOutlineSetting fontSize="20px" />
-        <p>設定</p>
-      </div>
+      <SettingModal id={id} item={item} />
       {CanMoveUp ? (
         <div
           className="flex items-center flex-col text-white p-1 rounded-lg mx-2 cursor-pointer"

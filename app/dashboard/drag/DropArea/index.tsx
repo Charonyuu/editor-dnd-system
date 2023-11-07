@@ -39,7 +39,15 @@ const DroppableArea: FC = () => {
         const { id, ...ComponentData } = Comp;
         return (
           <div
-            className="relative w-full rounded-xl overflow-hidden mb-2 border border-solid border-gray-500"
+            className="relative rounded-xl overflow-hidden mb-2 flex flex-col"
+            style={{
+              paddingLeft: Comp.setting.padding + "px",
+              paddingRight: Comp.setting.padding + "px",
+              width: Comp.setting.width + "%",
+              alignItems: Comp.setting.align,
+              backgroundColor: Comp.setting.bgColor,
+              // animation
+            }}
             key={Comp.id}
           >
             <Comp.component id={Comp.id} ComponentData={ComponentData} />

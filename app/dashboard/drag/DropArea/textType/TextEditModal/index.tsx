@@ -1,184 +1,72 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 
-import ColorChooser from "../../component/ColorChooser";
 import Modal from "@/components/EditModal";
 
-import { MdOutlineFormatColorText } from "react-icons/md";
-import { IoColorPaletteOutline } from "react-icons/io5";
-import {
-  BsTextCenter,
-  BsTextLeft,
-  BsTextParagraph,
-  BsTextRight,
-} from "react-icons/bs";
-import { TbEdit } from "react-icons/tb";
-import { PiTextTBold } from "react-icons/pi";
-import { Button } from "@/components/ui/button";
+import "react-quill/dist/quill.snow.css";
+import { BsTextCenter, BsTextLeft, BsTextRight } from "react-icons/bs";
 import { twMerge } from "tailwind-merge";
-import { SaveTextType, TextType } from "../type";
+import { TextType } from "../../../../../../Types/textType";
 import DragItemOptions from "../../../DragItemOptions";
+import Quill from "@/components/customEditTool/Quill";
+import AlignList from "@/components/customEditTool/FlexAlignList";
+import SideMenu from "@/components/SideMenu";
+import TextAlignList from "@/components/customEditTool/TextAlignList";
 
 type Props = {
-  onComplete: (data: SaveTextType) => void;
-  data: SaveTextType;
+  onComplete: (data: TextType) => void;
+  onCancel: () => void;
+  setData: React.Dispatch<React.SetStateAction<TextType>>;
+  data: TextType;
   id: number;
 };
 
-export default function TextEditModal({ onComplete, data, id }: Props) {
+export default function TextEditModal({
+  onComplete,
+  onCancel,
+  setData,
+  data,
+  id,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [setting, setSetting] = useState<TextType>({
-    ...data,
-    content: data.content.join("\n"),
-  });
 
-  useEffect(() => {
-    setSetting({
-      ...data,
-      content: data.content.join("\n"),
-    });
-  }, [data]);
-
-  // 處理選擇變更的函數
-  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSetting((prev) => ({ ...prev, animation: event.target.value }));
-  };
-
-  const animationType = [
-    { type: "", name: "無" },
-    { type: "leftFadeIn", name: "左側漸入" },
-    { type: "rightFadeIn", name: "右側漸入" },
-    { type: "bottomFadeIn", name: "下方漸入" },
-  ];
+  function handleChange(type: string, value: string | number | boolean) {
+    setData((prev) => ({ ...prev, [type]: value }));
+  }
 
   function handleSave() {
-    onComplete({ ...setting, content: setting.content.split("\n") });
+    onComplete(data);
     setIsOpen(false);
   }
 
   function handleCancel() {
     // 確認取消
+    onCancel();
     setIsOpen(false);
   }
 
   return (
     <>
       <DragItemOptions id={id} openModal={() => setIsOpen(true)} />
-      {isOpen ? (
-        <Modal handleClose={handleCancel} handleSave={handleSave}>
-          <div className="flex">
-            <div className="w-[400px] p-2">
-              <div className="flex items-center">
-                <PiTextTBold className="text-[25px] mr-1" />
-                <input
-                  className="bg-[#4f4f4f] rounded-md w-full pl-1 text-white"
-                  placeholder="請輸入標題(非必填)"
-                  defaultValue={setting.title}
-                  onChange={(e) =>
-                    setSetting((prev) => ({ ...prev, title: e.target.value }))
-                  }
-                />
-              </div>
-              <div className="flex items-center">
-                <MdOutlineFormatColorText className="text-[25px] mr-1" />
-                <ColorChooser
-                  selectedColor={setting.titleColor}
-                  setColor={(color) =>
-                    setSetting((prev) => ({ ...prev, titleColor: color }))
-                  }
-                />
-              </div>
-              <div className="flex items-start justify-start">
-                <BsTextParagraph className="text-[25px] mr-1" />
-                <textarea
-                  placeholder="請輸入內容(非必填)"
-                  defaultValue={setting.content}
-                  className="bg-[#4f4f4f] rounded-md w-full pl-1 text-white"
-                  rows={6}
-                  onChange={(e) =>
-                    setSetting((prev) => ({ ...prev, content: e.target.value }))
-                  }
-                />
-              </div>
-              <div className="flex items-center">
-                <IoColorPaletteOutline className="text-[25px] mr-1" />
-                <ColorChooser
-                  selectedColor={setting.contentColor}
-                  setColor={(color) =>
-                    setSetting((prev) => ({ ...prev, contentColor: color }))
-                  }
-                />
-              </div>
-              <p>動畫效果:</p>
-              {animationType.map((data) => (
-                <label className="mr-2" key={data.type}>
-                  <input
-                    type="radio"
-                    value={data.type}
-                    checked={setting.animation === data.type}
-                    onChange={handleRadioChange}
-                  />
-                  {data.name}
-                </label>
-              ))}
-
-              <p>對齊:</p>
-              <div className="flex items-center">
-                <div
-                  className={twMerge(
-                    " p-1 mr-2 rounded-md cursor-pointer",
-                    setting.textAlign === "left"
-                      ? "bg-gray-500 "
-                      : "bg-gray-300 hover:bg-gray-500"
-                  )}
-                  onClick={() =>
-                    setSetting((prev) => ({ ...prev, textAlign: "left" }))
-                  }
-                >
-                  <BsTextLeft className="text-[20px]" />
-                </div>
-                <div
-                  className={twMerge(
-                    " p-1 mr-2 rounded-md cursor-pointer",
-                    setting.textAlign === "center"
-                      ? "bg-gray-500 "
-                      : "bg-gray-300 hover:bg-gray-500"
-                  )}
-                  onClick={() =>
-                    setSetting((prev) => ({ ...prev, textAlign: "center" }))
-                  }
-                >
-                  <BsTextCenter className="text-[20px]" />
-                </div>
-                <div
-                  className={twMerge(
-                    " p-1 mr-2 rounded-md cursor-pointer",
-                    setting.textAlign === "right"
-                      ? "bg-gray-500 "
-                      : "bg-gray-300 hover:bg-gray-500"
-                  )}
-                  onClick={() =>
-                    setSetting((prev) => ({ ...prev, textAlign: "right" }))
-                  }
-                >
-                  <BsTextRight className="text-[20px]" />
-                </div>
-              </div>
-            </div>
-            <div className="flex-1">
-              <p>示意圖</p>
-
-              <div className="w-full " style={{ textAlign: setting.textAlign }}>
-                <p style={{ color: setting.titleColor }}>{setting.title}</p>
-                <div style={{ color: setting.contentColor }}>
-                  {setting.content.split("\n").map((content, index) => (
-                    <p key={index}>{content || "\u00A0"}</p>
-                  ))}
-                </div>
-              </div>
-            </div>
+      <SideMenu
+        isOpen={isOpen}
+        handleClose={handleCancel}
+        handleSave={handleSave}
+      >
+        <div className="flex">
+          <div className="w-[400px] p-2">
+            <Quill
+              value={data.text}
+              setValue={(input) => handleChange("text", input)}
+            />
+            <p>對齊:</p>
+            <TextAlignList
+              type="textAlign"
+              handleChange={handleChange}
+              currentValue={data.textAlign}
+            />
           </div>
-        </Modal>
-      ) : null}
+        </div>
+      </SideMenu>
     </>
   );
 }

@@ -10,17 +10,20 @@ import ImageEditModal from "./imageEditModal";
 import { ImageType } from "@/Types/imageType";
 import ImageType1 from "@/components/Drags/Images/ImageType1";
 
-const Image1: FC<TempContainerProps> = ({ id }) => {
+const Image1: FC<TempContainerProps> = ({ id, ComponentData }) => {
   const { components, setComponents } = useDragContext();
-  const [data, setData] = useState<ImageType[]>([
-    {
-      id: Date.now(),
-      img: "",
-      url: "",
-      title: "",
-      textAlign: "",
-    },
-  ]);
+  const originalDataRef = useRef<ImageType[]>(
+    ComponentData?.images || [
+      {
+        id: Date.now(),
+        img: "",
+        url: "",
+        title: "",
+        textAlign: "",
+      },
+    ]
+  );
+  const [data, setData] = useState<ImageType[]>(originalDataRef.current);
 
   useLayoutEffect(() => {
     const data = components.find((ele) => ele.id === id);

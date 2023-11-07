@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
 
-import ColorChooser from "../../component/ColorChooser";
+import ColorChooser from "../../../../../../components/customEditTool/ColorChooser";
 import Modal from "@/components/EditModal";
 
 import { MdOutlineFormatColorText } from "react-icons/md";
@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { reducer } from "./Action";
 import DragItemOptions from "../../../DragItemOptions";
 import { NavMenu } from "@/components/Drags/Navbar/NavBar1";
+import Radio from "@/components/customEditTool/Radio";
 
 type Props = {
   onComplete: (data: NavBarType) => void;
@@ -127,38 +128,32 @@ export default function NavBarEditModal({ onComplete, data, id }: Props) {
                       }
                     />
                   </div>
-                  <label className="mr-2">
-                    <input
-                      type="radio"
-                      value={"url"}
-                      checked={nav.isDropDown === false}
-                      onChange={(event) =>
-                        handleInputChange(
-                          nav.id,
-                          "isDropDown",
-                          event.target.value === "dropdown"
-                        )
-                      }
-                      name={`${nav.id}_radio`}
-                    />
-                    點擊網址
-                  </label>
-                  <label className="mr-2">
-                    <input
-                      type="radio"
-                      value={"dropdown"}
-                      checked={nav.isDropDown === true}
-                      onChange={(event) =>
-                        handleInputChange(
-                          nav.id,
-                          "isDropDown",
-                          event.target.value === "dropdown"
-                        )
-                      }
-                      name={`${nav.id}_radio`}
-                    />
-                    點擊下拉選單
-                  </label>
+                  <Radio
+                    value={"url"}
+                    checked={nav.isDropDown === false}
+                    onChange={(event) =>
+                      handleInputChange(
+                        nav.id,
+                        "isDropDown",
+                        event.target.value === "dropdown"
+                      )
+                    }
+                    name={`${nav.id}_radio`}
+                    radioName="點擊網址"
+                  />
+                  <Radio
+                    value={"dropdown"}
+                    checked={nav.isDropDown === true}
+                    onChange={(event) =>
+                      handleInputChange(
+                        nav.id,
+                        "isDropDown",
+                        event.target.value === "dropdown"
+                      )
+                    }
+                    name={`${nav.id}_radio`}
+                    radioName="點擊下拉選單"
+                  />
                   {nav.isDropDown ? (
                     <>
                       {nav.childrens?.map((children) => (
