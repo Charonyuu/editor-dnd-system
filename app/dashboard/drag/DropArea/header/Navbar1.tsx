@@ -1,47 +1,49 @@
 "use client";
 
-import { FC, useLayoutEffect, useState } from "react";
+import { FC, useLayoutEffect, useRef, useState } from "react";
 import NavBarEditModal from "./NavBarEditModal";
 import { NavBarType } from "./type";
 import { TempContainerProps } from "../../../../../Types/type";
 import { useDragContext } from "../../DragProvider";
 import { NavMenu } from "@/components/Drags/Navbar/NavBar1";
 
-const Navbar1: FC<TempContainerProps> = ({ id }) => {
+const Navbar1: FC<TempContainerProps> = ({ id, ComponentData }) => {
   const { components, setComponents } = useDragContext();
-  const [data, setData] = useState<NavBarType>({
-    bgColor: "",
-    color: "",
-    logo: "",
-    navs: [
-      {
-        id: Date.now(),
-        name: "",
-        url: "",
-        isDropDown: false,
-        childrens: [{ id: Date.now().toString(), name: "", url: "" }],
-      },
-    ],
-  });
-  useLayoutEffect(() => {
-    const data = components.find((ele) => ele.id === id);
-    if (data?.navbarType) {
-      setData(data.navbarType);
+  const originalDataRef = useRef<NavBarType>(
+    ComponentData?.navbarType || {
+      bgColor: "",
+      color: "",
+      logo: "",
+      navs: [
+        {
+          id: Date.now(),
+          name: "",
+          url: "",
+          isDropDown: false,
+          childrens: [{ id: Date.now().toString(), name: "", url: "" }],
+        },
+      ],
     }
-  }, []);
-  function onComplete(setting: NavBarType) {
-    setData(setting);
+  );
+  const [data, setData] = useState<NavBarType>(originalDataRef.current);
+
+  function onComplete() {
     setComponents((prev) => {
       const componentsTemp = [...prev];
       const index = componentsTemp.findIndex((ele) => ele.id === id);
-      componentsTemp[index] = { ...componentsTemp[index], navbarType: setting };
+      componentsTemp[index] = { ...componentsTemp[index], navbarType: data };
       return componentsTemp;
     });
   }
   return (
     <div className="w-full relative group px-5">
       <NavMenu data={data} />
-      <NavBarEditModal data={data} onComplete={onComplete} id={id} />
+      <NavBarEditModal
+        data={data}
+        setData={setData}
+        onComplete={onComplete}
+        id={id}
+      />
     </div>
   );
 };

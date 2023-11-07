@@ -2,6 +2,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { FC, useState } from "react";
 import { Button } from "../ui/button";
+import ReactDOM from "react-dom";
 
 type PictureModalProps = {
   selectedFile: string;
@@ -54,7 +55,7 @@ const PictureModal: FC<PictureModalProps> = ({
     }
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="text-black fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-[999]">
       <div className="bg-black border border-solid border-blue-900 p-2 rounded-lg">
         <div className="cropper ">
@@ -83,7 +84,8 @@ const PictureModal: FC<PictureModalProps> = ({
           <Button onClick={getCropData}>確認</Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

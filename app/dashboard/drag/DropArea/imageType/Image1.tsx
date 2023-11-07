@@ -25,16 +25,8 @@ const Image1: FC<TempContainerProps> = ({ id, ComponentData }) => {
   );
   const [data, setData] = useState<ImageType[]>(originalDataRef.current);
 
-  useLayoutEffect(() => {
-    const data = components.find((ele) => ele.id === id);
-    if (!data) return;
-    if (data.images) {
-      setData(data.images);
-    }
-  }, []);
-
-  function onComplete(data: ImageType[]) {
-    setData(data);
+  function onComplete() {
+    originalDataRef.current = data;
     setComponents((prev) => {
       const temp = [...prev];
       const index = temp.findIndex((ele) => ele.id === id);
@@ -46,11 +38,20 @@ const Image1: FC<TempContainerProps> = ({ id, ComponentData }) => {
       return temp;
     }); //
   }
+  function onCancel() {
+    setData(originalDataRef.current);
+  }
 
   return (
     <div className="w-full relative group px-5">
       <ImageType1 data={data} />
-      <ImageEditModal id={id} data={data} onComplete={onComplete} />
+      <ImageEditModal
+        id={id}
+        data={data}
+        onCancel={onCancel}
+        onComplete={onComplete}
+        setData={setData}
+      />
     </div>
   );
 };

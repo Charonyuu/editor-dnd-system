@@ -3,40 +3,40 @@ import React, { ChangeEvent, useEffect, useReducer, useState } from "react";
 import { Button } from "@/components/ui/button";
 import DragItemOptions from "../../../DragItemOptions";
 import PictureCrop from "@/components/PictureCrop";
-import { reducer } from "./Action";
-import ImageType1 from "@/components/Drags/Images/ImageType1";
+
 import { BsImage } from "react-icons/bs";
 import { TbLink } from "react-icons/tb";
 import { AiFillDelete } from "react-icons/ai";
 import SideMenu from "@/components/SideMenu";
-
-export type imageEditType = {
-  id: number;
-  url: string;
-  img: string;
-  title: string;
-  textAlign: string;
-};
+import { ImageType } from "@/Types/imageType";
+import useImageEdit from "./useImageEdit";
 
 type Props = {
-  onComplete: (data: imageEditType[]) => void;
-  data: imageEditType[];
+  onComplete: () => void;
+  onCancel: () => void;
+  setData: React.Dispatch<React.SetStateAction<ImageType[]>>;
+  data: ImageType[];
   id: number;
 };
 
-export default function ImageEditModal({ id, data, onComplete }: Props) {
+export default function ImageEditModal({
+  id,
+  data,
+  onComplete,
+  onCancel,
+  setData,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [state, dispatch] = useReducer(reducer, data);
-  useEffect(() => {
-    dispatch({ type: "INIT_DATA", payload: data });
-  }, [data]);
+  const { updataList, addList, deleteList } = useImageEdit(setData);
+
   function handleSave() {
-    onComplete(state);
+    onComplete();
     setIsOpen(false);
   }
 
   function handleCancel() {
     // 確認取消
+    onCancel();
     setIsOpen(false);
   }
 
@@ -52,7 +52,7 @@ export default function ImageEditModal({ id, data, onComplete }: Props) {
       >
         <div className="flex h-full overflow-auto pb-4">
           <div className="w-[400px] p-2 ">
-            {state.map((item) => (
+            {data.map((item) => (
               <div
                 key={item.id}
                 className="pl-2 mb-2 border-l-4 rounded-sm border-solid border-black flex "
@@ -71,14 +71,7 @@ export default function ImageEditModal({ id, data, onComplete }: Props) {
                       )}
                       <PictureCrop
                         onComplete={(image) => {
-                          dispatch({
-                            type: "UPDATE_LIST",
-                            payload: {
-                              id: item.id,
-                              type: "img",
-                              value: image,
-                            },
-                          });
+                          updataList(item.id, "img", image);
                         }}
                         aspectRatio={4}
                       />
@@ -91,32 +84,18 @@ export default function ImageEditModal({ id, data, onComplete }: Props) {
                       placeholder="請輸入網址(選填)"
                       value={item.url}
                       className="border-black border-b border-solid  "
-                      onChange={(e) => {
-                        dispatch({
-                          type: "UPDATE_LIST",
-                          payload: {
-                            id: item.id,
-                            type: "url",
-                            value: e.target.value,
-                          },
-                        });
-                      }}
+                      onChange={(e) =>
+                        updataList(item.id, "url", e.target.value)
+                      }
                     />
                   </div>
                 </div>
                 <div className="pt-2 text-red-600 cursor-pointer">
-                  <AiFillDelete
-                    onClick={() =>
-                      dispatch({
-                        type: "DELETE_DATA",
-                        payload: { id: item.id },
-                      })
-                    }
-                  />
+                  <AiFillDelete onClick={() => deleteList(item.id)} />
                 </div>
               </div>
             ))}
-            <Button onClick={() => dispatch({ type: "ADD_LIST" })}>增加</Button>
+            <Button onClick={addList}>增加</Button>
           </div>
         </div>
       </SideMenu>
