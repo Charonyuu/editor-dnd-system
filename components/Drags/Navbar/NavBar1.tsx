@@ -27,53 +27,59 @@ export const NavMenu: FC<{ data: NavBarType; className?: string }> = ({
       style={{ backgroundColor: data.bgColor, color: data.color }}
     >
       {data.logo ? (
-        <Image
-          width={100}
-          height={40}
+        // <Image
+        //   width={100}
+        //   height={40}
+        //   alt="logo"
+        //   className="w-[100px] h-[40px] object-cover"
+        //   src={data.logo}
+        // />
+        <img
           alt="logo"
           className="w-[100px] h-[40px] object-cover"
           src={data.logo}
         />
       ) : null}
-      <NavigationMenu>
-        <NavigationMenuList>
-          {data.navs.map((nav) => (
-            <NavigationMenuItem key={nav.id}>
-              {nav.isDropDown ? (
-                <>
-                  <NavigationMenuTrigger>{nav.name}</NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-full bg-white flex flex-col items-center">
-                    <ul className="">
-                      {nav.childrens?.map((children) => (
-                        <NavigationMenuLink asChild key={children.name}>
-                          <a
-                            className="px-4 py-2 hover:bg-slate-500 "
-                            style={{
-                              backgroundColor: data.bgColor,
-                              color: data.color,
-                            }}
-                            href={children.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {children.name}
-                          </a>
-                        </NavigationMenuLink>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </>
-              ) : (
-                <a target="_blank" rel="noopener noreferrer" href={nav.url!}>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {nav.name}
-                  </NavigationMenuLink>
-                </a>
-              )}
-            </NavigationMenuItem>
-          ))}
-        </NavigationMenuList>
-      </NavigationMenu>
+
+      <div className="flex items-center ml-4">
+        {data.navs.map((nav) => (
+          <div key={nav.id} className="mx-2">
+            {nav.isDropDown ? (
+              <div className=" group relative cursor-pointer">
+                <div className="peer mx-1 font-semibold">{nav.name}</div>
+                <div className="absolute top-8 bg-white flex-col items-center group-hover:flex  group-hover:z-[10] flex z-[1]">
+                  <div className="">
+                    {nav.childrens?.map((children) => (
+                      <a
+                        key={children.name}
+                        className="px-2 py-1 rounded-md hover:underline"
+                        style={{
+                          backgroundColor: data.bgColor,
+                          color: data.color,
+                        }}
+                        href={children.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {children.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                target="_blank"
+                className=" font-semibold"
+                rel="noopener noreferrer"
+                href={nav.url!}
+              >
+                {nav.name}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

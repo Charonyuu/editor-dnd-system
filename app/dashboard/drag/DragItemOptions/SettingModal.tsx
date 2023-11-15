@@ -31,7 +31,8 @@ export default function SettingModal({ id, item }: Props) {
   const [setting, setSetting] = useState<SettingType>(
     item.setting || {
       bgColor: "#FFFFFF",
-      padding: 0,
+      paddingX: 0,
+      paddingY: 0,
       width: 100,
       align: "flex-start",
       animation: "none",
@@ -74,10 +75,16 @@ export default function SettingModal({ id, item }: Props) {
         handleSave={handleSave}
       >
         <div className="w-full px-2 mt-2">
-          <p>內邊距：</p>
+          <p>左右內邊距：</p>
           <NumberInput
-            number={setting.padding}
-            setNumber={(value) => handleInputChange("padding", value)}
+            number={setting.paddingX}
+            setNumber={(value) => handleInputChange("paddingX", value)}
+            max={100}
+          />
+          <p>上下內邊距：</p>
+          <NumberInput
+            number={setting.paddingY}
+            setNumber={(value) => handleInputChange("paddingY", value)}
             max={100}
           />
           <p>背景顏色：</p>

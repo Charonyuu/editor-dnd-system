@@ -30,7 +30,7 @@ const Text1: FC<TempContainerProps> = ({ id, ComponentData }) => {
   }
 
   return (
-    <div className="w-full relative group px-5 py-1">
+    <div className="w-full relative group">
       <TextType1 data={data} />
       <TextEditModal
         onComplete={onComplete}

@@ -1,4 +1,3 @@
-"use client";
 import { StorageComponentsType } from "@/Types/type";
 import ImageType1 from "@/components/Drags/Images/ImageType1";
 import React, { FC } from "react";
@@ -9,7 +8,6 @@ type ComponentInfoType = {
 
 const Image1: FC<ComponentInfoType> = ({ data }) => {
   const { images } = data;
-  console.log(images);
   return <ImageType1 data={images!} />;
 };
 

@@ -1,5 +1,5 @@
 // 網頁banner 滿版橫幅
-
+"use client";
 import Image from "next/image";
 import React, { FC, useLayoutEffect, useRef, useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
@@ -43,7 +43,7 @@ const Image1: FC<TempContainerProps> = ({ id, ComponentData }) => {
   }
 
   return (
-    <div className="w-full relative group px-5">
+    <div className="w-full relative group">
       <ImageType1 data={data} />
       <ImageEditModal
         id={id}

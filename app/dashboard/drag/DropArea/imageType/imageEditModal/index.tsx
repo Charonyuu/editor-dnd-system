@@ -73,7 +73,7 @@ export default function ImageEditModal({
                         onComplete={(image) => {
                           updataList(item.id, "img", image);
                         }}
-                        aspectRatio={4}
+                        aspectRatio={3}
                       />
                     </div>
                   </div>

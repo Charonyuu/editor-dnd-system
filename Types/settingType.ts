@@ -1,6 +1,7 @@
 export type SettingType = {
   bgColor: string;
-  padding: number;
+  paddingX: number;
+  paddingY: number;
   width: number;
   align: string;
   animation: string;

@@ -18,7 +18,8 @@ const DroppableArea: FC = () => {
       type: CompType,
       setting: {
         bgColor: "#FFFFFF",
-        padding: 0,
+        paddingX: 0,
+        paddingY: 0,
         width: 100,
         align: "left",
         animation: "none",
@@ -32,17 +33,16 @@ const DroppableArea: FC = () => {
     <div
       onDrop={handleOnDrop}
       onDragOver={preventDefault}
-      className="w-full min-h-screen relative p-5"
+      className="w-full min-h-screen relative"
       style={{ backgroundColor: bgColor }}
     >
       {components.map((Comp) => {
         const { id, ...ComponentData } = Comp;
         return (
           <div
-            className="relative rounded-xl overflow-hidden mb-2 flex flex-col"
+            className="relative overflow-hidden flex flex-col"
             style={{
-              paddingLeft: Comp.setting.padding + "px",
-              paddingRight: Comp.setting.padding + "px",
+              padding: `${Comp.setting.paddingY}px ${Comp.setting.paddingX}px`,
               width: Comp.setting.width + "%",
               alignItems: Comp.setting.align,
               backgroundColor: Comp.setting.bgColor,

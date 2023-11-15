@@ -36,6 +36,13 @@ export default function FeatureControls() {
             );
             result = { ...result, images };
           }
+          if (otherEle.navbarType?.logo.includes("blob")) {
+            const logo = await uploadFile(otherEle.navbarType?.logo);
+            result = {
+              ...result,
+              navbarType: { ...otherEle.navbarType, logo },
+            };
+          }
           console.log(result);
 
           return result;

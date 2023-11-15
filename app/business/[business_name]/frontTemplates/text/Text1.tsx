@@ -12,10 +12,6 @@ const Text1: FC<ComponentInfoType> = ({ data }) => {
     textAlign: "left",
   };
 
-  return (
-    <div className="w-full relative group px-5 py-1 mb-5">
-      <TextType1 data={textType} />
-    </div>
-  );
+  return <TextType1 data={textType} />;
 };
 export default Text1;
