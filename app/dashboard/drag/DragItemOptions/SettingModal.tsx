@@ -102,6 +102,7 @@ export default function SettingModal({ id, item }: Props) {
           <p>動畫效果：</p>
           {animationType.map((item) => (
             <Radio
+              key={item.type}
               value={item.type}
               checked={item.type === setting.animation}
               onChange={(e) => handleInputChange("animation", e.target.value)}
