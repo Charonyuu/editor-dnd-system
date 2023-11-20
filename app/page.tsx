@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Navbar from "./home/Navbar";
+import Navbar from "./(home)/Navbar";
 
 export default function Main() {
   return (

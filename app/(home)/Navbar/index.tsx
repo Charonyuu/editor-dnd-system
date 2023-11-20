@@ -16,7 +16,7 @@ export default function HomeNavbar() {
   return (
     <div className="fixed top-0 w-screen flex justify-between items-center px-4 py-1 border-b border-black border-solid">
       <div className="flex items-center">
-        <a href="/home/getStarted" className="flex items-center">
+        <a href="/getStarted" className="flex items-center">
           <Image
             width={50}
             height={30}
@@ -25,16 +25,16 @@ export default function HomeNavbar() {
           />
           <p className="font-semibold mr-4 font-Pixelify">Web Draggie</p>
         </a>
-        <a href="/home/getStarted" className="mx-4">
+        <a href="/getStarted" className="mx-4">
           Get Started
         </a>
-        <a href="/home/pricing" className="mx-4">
+        <a href="/pricing" className="mx-4">
           Pricing
         </a>
-        <a href="/home/example" className="mx-4">
+        <a href="/example" className="mx-4">
           Examples
         </a>
-        <a href="/home/contact" className="mx-4">
+        <a href="/contact" className="mx-4">
           Contact Me
         </a>
       </div>
@@ -43,7 +43,7 @@ export default function HomeNavbar() {
         {/* <ModeSwitch /> */}
         <I18nDropDown />
         {!isLogin ? (
-          <Button onClick={() => router.push("/home/SignIn")} variant="outline">
+          <Button onClick={() => router.push("/SignIn")} variant="outline">
             <BiLogInCircle fontSize="20px" />
             <p className="ml-2">login</p>
           </Button>

@@ -1,4 +1,4 @@
-import HomeNavbar from "@/app/home/Navbar";
+import HomeNavbar from "@/app/(home)/Navbar";
 
 export default function HomeLayout({
   children, // will be a page or nested layout
@@ -10,7 +10,9 @@ export default function HomeLayout({
       {/* Include shared UI here e.g. a header or sidebar */}
       <HomeNavbar />
 
-      <div className="min-h-screen min-w-screen pt-[50px] flex flex-col">{children}</div>
+      <div className="min-h-screen min-w-screen pt-[50px] flex flex-col">
+        {children}
+      </div>
     </section>
   );
 }
